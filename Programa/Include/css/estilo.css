@@ -1,0 +1,305 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans&family=Josefin+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab:wght@300&display=swap');
+
+
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+}
+ body {
+    width: 100vw;
+    height: 100vh;
+    font-family: 'Fira Sans', sans-serif;
+    font-family: 'Josefin Sans', sans-serif;
+}
+
+.fotologin {
+    background-image: url("../imagens/livros-login.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.fotocadastro {
+    background-image: url("../imagens/livros-cadastro.jpg");
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+._containerLogin {
+    width: 480px;
+    height: 440px;
+    margin: auto;
+    margin-top: 50vh;
+    top: 50%;     
+    transform: translate(0, -43%);
+    padding: 150px 30px;
+    color: white;
+    background-color: transparent;
+    box-shadow: 0 0 1em black;
+    -webkit-box-shadow: 0 0 1em black;
+    -moz-box-shadow: 0 0 1em black;
+    backdrop-filter: saturate(70%) blur(3px);
+
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+._containerCadastro {
+    width: 600px;
+    height: 500px;
+    margin: auto;
+    margin-top: 50vh;
+    top: 50%;     
+    transform: translate(0, -43%);
+    padding: 150px 30px;
+    color: white;
+    background-color: transparent;
+    box-shadow: 0 0 1em black;
+    -webkit-box-shadow: 0 0 1em black;
+    -moz-box-shadow: 0 0 1em black;
+    backdrop-filter: saturate(70%) blur(5px);
+
+    animation-name: fade;
+    animation-duration: 1.5s;
+}
+
+.imglogin {
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    top: calc(-75px);
+    left: calc(42% - 40px);
+    filter: saturate(60%);
+}
+
+.imgcadastro {
+    width: 150px;
+    height: 150px;
+    position: absolute;
+    top: calc(-75px);
+    left: calc(45% - 40px);
+    filter: saturate(210%);
+}
+
+input[type=text]:focus, input[type=password]:focus, input[type=number]:focus {
+    border-color: rgb(0, 0, 0);
+    box-shadow: 0 0 8px 0 rgb(5, 5, 5);
+}
+
+.form-group input[type=text], .form-group input[type=password], input[type=number]{
+    padding-left: 40px;
+    color: black;
+}
+
+.padding-cadastro:last-child {
+    padding-top: 20px;
+}
+
+.form-group {
+    position: relative;
+}
+
+.form-group i{
+    position: absolute;
+    left: 0;
+    top: 8px;
+    padding: 3px 8px;
+    color: rgb(0, 0, 0);
+}
+
+.form-control {
+    border-radius: 0px;
+    background-clip: border-box;
+    color: black;
+}
+
+.font {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+.login {
+    margin-top: 10%;
+    padding-top: 8px;
+    background-color: #5397cd;
+    border-color: #5397cd;
+    color: white;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.login:focus{
+    color: white;
+    background-color: #5397cd;
+    border-color: #5397cd;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    grid-column-gap: 40px;
+
+}
+
+.cadastro:first-child {
+    margin-top: 25px;
+    padding-top: 8px;
+    border-width: 1px;
+    background-color: #4877f4;
+    border-color: #4877f4;
+    color: white;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.cadastro:first-child:hover {
+    background-color: #0e4bef;
+    border-color: #0e4bef;
+    transition: 0.5s;
+}
+
+.cadastro:last-child {
+    margin-top: 25px;
+    padding-top: 8px;
+    background-color: #ff0000;
+    border-color: #ff0000;
+    color: white;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+
+.cadastro:last-child:hover {
+    background-color: #cc0000;
+    border-color: #cc0000;
+    transition: 0.5s;
+}
+
+
+/* Rodapé */
+
+a {
+    color: #6c757d;
+  }
+  
+  a:hover {
+    color: #63531d;
+    text-decoration: none;
+  }
+  
+  ::selection {
+    background: #63531d;
+    text-shadow: none;
+  }
+  
+  footer {
+    padding: 2rem 0;
+    background-color: #171616;
+    color: #6c757d;
+    font-family: "Roboto Slab", serif;
+  }
+  
+  .footer-column:not(:first-child) {
+    padding-top: 2rem;
+  }
+  @media (min-width: 768px) {
+    .footer-column:not(:first-child) {
+      padding-top: 0rem;
+    }
+  }
+  
+  .footer-column {
+    text-align: center;
+  }
+  .footer-column .nav-item .nav-link {
+    padding: 4px 0;
+  }
+  .footer-column .nav-item span.nav-link:hover {
+    color: #6c757d;
+  }
+  .footer-column .nav-item span.footer-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #fff;
+    text-transform: uppercase;
+    padding-bottom: 8px;
+  }
+  .footer-column .nav-item .fas {
+    margin-right: 0.5rem;
+  }
+  .footer-column ul {
+    display: inline-block;
+  }
+  @media (min-width: 768px) {
+    .footer-column ul {
+      text-align: left;
+    }
+  }
+  
+  ul.social-buttons {
+    margin-bottom: 0;
+  }
+  
+  ul.social-buttons li a:active,
+  ul.social-buttons li a:focus,
+  ul.social-buttons li a:hover {
+    background-color: #63531d;
+  }
+  
+  ul.social-buttons li a {
+    font-size: 20px;
+    line-height: 40px;
+    display: block;
+    width: 40px;
+    height: 40px;
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+    color: #fff;
+    border-radius: 100%;
+    outline: 0;
+    background-color: #1a1d20;
+  }
+  
+  ul.social-buttons li a .fab {
+    color: white;
+  }
+  
+  footer .quick-links {
+    font-size: 90%;
+    line-height: 40px;
+    margin-bottom: 0;
+    text-transform: none;
+  }
+  
+  .copyright {
+    color: white;
+  }
+  
+  .fa-ellipsis-h {
+    color: white;
+    padding: 2rem 0;
+  }
+  
+  .navbar .navbar-header,
+  .navbar-collapse {
+    float: none;
+    display: inline-block;
+    vertical-align: top;
+  }
+
+
+
+/* Aparecer o Form */
+
+@keyframes fade {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
