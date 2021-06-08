@@ -22,18 +22,18 @@
     crossorigin="anonymous"
     />
 
-    <link rel="stylesheet" href="../../Include/css/estilo.css">
+    <link rel="stylesheet" href="../Include/css/estilo.css">
 
 </head>
 <body class="fotologin">
     <main>
         <div class="_containerLogin">
-            <img class="imglogin" src="../../Include/imagens/avatarLogin.png"> 
+            <img class="imglogin" src="../Include/imagens/avatarLogin.png"> 
             <!--<h3>Login Estoque</h3>-->    
-            <form action="menu.html" method="POST">
+            <form method="POST" action="login.php">
                 <div class="form-group">
                     <i class="fas fa-user"></i>
-                    <input type="text" class="form-control font" id="nome" name="nome" title="Usuário padrão da biblioteca" placeholder="Usuário" required>
+                    <input type="text" class="form-control font" id="user" name="user" title="Usuário padrão da biblioteca" placeholder="Usuário" required>
                 </div>
         
                 <div class="form-group">
@@ -41,9 +41,14 @@
                     <input type="password" class="form-control font" id="senha" name="senha" title="Senha padrão da biblioteca" placeholder="Password" required>
                 </div>
                 <div class="form-group">
-                    <input class="form-control login" type="submit" value="Login">
+                    <input class="form-control login" type="submit" name="login" value="Login">
                 </div>
             </form>
+            <?php
+                include_once("../Controller/BibliotecaController.php");
+                $obj = new BibliotecaController();
+                $obj->fazerLogin();
+            ?>
         </div>
     </main>
     
