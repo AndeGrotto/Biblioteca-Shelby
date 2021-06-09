@@ -7,7 +7,7 @@ require_once("../Model/LoginValidate.php");
 
 class BibliotecaController {
 	public function controlaInsercao() {
-		if (isset($_POST['botao'])) {
+		if (isset($_POST['cadastrarAluno'])) {
 			if (strlen($_POST['nome']) >= 1 && strlen($_POST['telefone']) >= 1) {
 				$nome = trim($_POST["nome"]);
 				$telefone = trim($_POST["telefone"]);
@@ -17,17 +17,11 @@ class BibliotecaController {
 		  		$alunos->telefone = $telefone;
 
 		  		if($DAO->Inserir($alunos)) {
-					echo "CADASTRADO COM SUCESSO!";
-		  		}
-		  		else {
-					echo "ERRO NO BANCO DE DADOS: $DAO->erro";
+    				echo "<script>alert('Aluno cadastrado com sucesso');</script>";
 		  		}
 			}
-		else {
-			echo "Em branco!";
-		}
-		}
-	  }
+	    }
+	}
 
 	  public function fazerLogin() {
 		if (isset($_POST['login'])) {
