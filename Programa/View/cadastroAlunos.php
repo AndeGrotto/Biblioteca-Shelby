@@ -23,12 +23,14 @@
     />
 
     <link rel="stylesheet" href="../Include/css/estilo.css">
+<style>
 
+</style>
 </head>
 <body class="fotocadastroAlunos">
     <main>
         <div class="_containerCadastroAlunos">
-            <img class="imglogin" src="../Include/imagens/avatarLogin.png"> 
+            <img class="imglogin" src="../Include/imagens/avatarCadastroAlunos.png"> 
             <!--<h3>Login Estoque</h3>-->    
             <form method="POST" action="cadastroAlunos.php">
                 <div class="form-group">
@@ -47,6 +49,7 @@
                 </div>
             </form>
             <?php
+                include_once("../Include/alunosResult.php");
                 include_once("../Controller/AlunosController.php");
                 $obj = new AlunosController();
                 $obj->controlaInsercao();

@@ -33,7 +33,7 @@
             <form method="POST" action="login.php">
                 <div class="form-group">
                     <i class="fas fa-user"></i>
-                    <input type="text" class="form-control font" id="user" name="user" title="Usuário padrão da biblioteca" size="50" minlength="1" pattern="[a-z0-9._%+-]+" placeholder="Usuário" required>
+                    <input type="text" class="form-control font" id="user" name="user" title="Usuário padrão da biblioteca" size="50" minlength="1" placeholder="Usuário" required>
                 </div>
         
                 <div class="form-group">
@@ -45,9 +45,11 @@
                 </div>
             </form>
             <?php
+                include_once("../Include/loginResult.php");
                 include_once("../Controller/LoginController.php");
                 $obj = new LoginController();
-                $obj->fazerLogin();
+                //$obj->fazerLogin();
+                $obj->controlaConsulta();
             ?>
         </div>
     </main>

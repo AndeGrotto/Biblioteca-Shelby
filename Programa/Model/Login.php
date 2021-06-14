@@ -1,9 +1,9 @@
 <?php
 
-class Alunos {
+class Login {
     private $id;
-    private $nome;
-    private $telefone;
+    private $usuario;
+    private $senha;
 
     public function __construct() {}
 

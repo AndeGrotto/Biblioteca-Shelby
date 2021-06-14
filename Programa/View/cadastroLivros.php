@@ -31,7 +31,7 @@
     </header>
     <main>
         <div class="_containerCadastroLivros">
-            <img class="imgcadastro" src="../Include/imagens/avatarCadastro.png"> 
+            <img class="imgcadastro" src="../Include/imagens/avatarCadastroLivros.png"> 
             <!--<h3>Login Estoque</h3>-->    
             <form action="cadastro.php" method="POST">
 

@@ -57,23 +57,71 @@ html, body {
     animation-duration: 1.5s;
 }
 
+._containerLogin .erro{
+  padding-top: 35px;
+  font-weight: bold;
+  font-size: 25px;
+  font-weight: bold;
+  color: red;
+  text-align: center;
+
+  text-shadow: 2px 2px 2px rgb(0, 0, 0);
+
+  animation: fa-blink 2s infinite;
+}
+
+._containerLogin .sucesso{
+  padding-top: 35px;
+  font-weight: bold;
+  font-size: 25px;
+  font-weight: bold;
+  color: rgb(115, 255, 0);
+  text-align: center;
+
+  text-shadow: 2px 2px 2px rgb(0, 0, 0);
+
+}
+
+
+
 ._containerCadastroAlunos {
     width: 600px;
-    height: 400px;
+    height: 420px;
     margin: auto;
     margin-top: 50vh;
     top: 50%;     
     transform: translate(0, -43%);
-    padding: 135px 30px;
+    padding: 140px 30px;
     color: white;
     background-color: transparent;
     box-shadow: 0 0 1em black;
     -webkit-box-shadow: 0 0 1em black;
     -moz-box-shadow: 0 0 1em black;
     backdrop-filter: saturate(70%) blur(5px);
+}
+._containerCadastroAlunos .erro{
+  padding-top: 35px;
+  font-weight: bold;
+  font-size: 25px;
+  font-weight: bold;
+  color: red;
+  text-align: center;
 
-    animation-name: fade;
-    animation-duration: 1.5s;
+  text-shadow: 2px 2px 2px rgb(0, 0, 0);
+
+  animation: fa-blink 2s infinite;
+}
+
+._containerCadastroAlunos .sucesso{
+  padding-top: 35px;
+  font-weight: bold;
+  font-size: 25px;
+  font-weight: bold;
+  color: rgb(115, 255, 0);
+  text-align: center;
+
+  text-shadow: 2px 2px 2px rgb(0, 0, 0);
+
 }
 
 ._containerCadastroLivros {
@@ -90,9 +138,6 @@ html, body {
   -webkit-box-shadow: 0 0 1em black;
   -moz-box-shadow: 0 0 1em black;
   backdrop-filter: saturate(70%) blur(3px);
-
-  animation-name: fade;
-  animation-duration: 1.5s;
 }
 
 .imglogin {
@@ -329,4 +374,11 @@ a {
     to {
         opacity: 1;
     }
+}
+
+/* Erro de cadastro */
+@keyframes fa-blink {
+  0% { opacity: 1; }
+  50% { opacity: 0.9; }
+  100% { opacity: 0; }
 }
