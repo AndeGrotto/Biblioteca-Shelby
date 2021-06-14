@@ -32,7 +32,7 @@
         <div class="_containerCadastroAlunos">
             <img class="imglogin" src="../Include/imagens/avatarCadastroAlunos.png"> 
             <!--<h3>Login Estoque</h3>-->    
-            <form method="POST" action="cadastroAlunos.php">
+            <form method="POST" action="cadastrarAlunos.php">
                 <div class="form-group">
                     <i class="fas fa-user"></i>
                     <input type="text" class="form-control font" id="nome "name="nome" title="Informe seu nome" placeholder="Nome" required>

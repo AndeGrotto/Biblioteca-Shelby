@@ -110,18 +110,43 @@ html, body {
 
 ._containerCadastroLivros {
   width: 480px;
-  height: 440px;
+  height: 460px;
   margin: auto;
   margin-top: 50vh;
   top: 50%;     
   transform: translate(0, -43%);
-  padding: 130px 30px;
+  padding: 120px 30px;
   color: white;
   background-color: transparent;
   box-shadow: 0 0 1em black;
   -webkit-box-shadow: 0 0 1em black;
   -moz-box-shadow: 0 0 1em black;
   backdrop-filter: saturate(70%) blur(3px);
+}
+
+._containerCadastroLivros .erro{
+  padding-top: 20px;
+  font-weight: bold;
+  font-size: 25px;
+  font-weight: bold;
+  color: red;
+  text-align: center;
+
+  text-shadow: 2px 2px 2px rgb(0, 0, 0);
+
+  animation: fa-blink 0.8s 3;
+}
+
+._containerCadastroLivros .sucesso{
+  padding-top: 25px;
+  font-weight: bold;
+  font-size: 25px;
+  font-weight: bold;
+  color: rgb(115, 255, 0);
+  text-align: center;
+
+  text-shadow: 2px 2px 2px rgb(0, 0, 0);
+
 }
 
 .imglogin {

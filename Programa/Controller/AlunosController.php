@@ -29,7 +29,7 @@ class AlunosController {
 				  else {
 					$mensagens[] = "ERRO NO BANCO DE DADOS: $DAO->erro";
 					$msg = serialize($mensagens);
-					header("Location: ../View/cadastroAlunos.php?msg=$msg");
+					header("Location: ../View/cadastrarAlunos.php?msg=$msg");
 				  }
 				  
 				  unset($user);

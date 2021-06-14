@@ -13,7 +13,7 @@ class AlunosDAO {
 
   public function Inserir($alunos){
     try {
-      $stmt = $this->a->query("SELECT * FROM alunos WHERE nome = '$alunos->nome'");
+      $stmt = $this->a->query("SELECT * FROM alunos WHERE matricula = '$alunos->matricula'");
       if($stmt->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT))
 	    return -1;
 

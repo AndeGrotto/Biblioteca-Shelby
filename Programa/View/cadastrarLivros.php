@@ -33,7 +33,7 @@
         <div class="_containerCadastroLivros">
             <img class="imgcadastro" src="../Include/imagens/avatarCadastroLivros.png"> 
             <!--<h3>Login Estoque</h3>-->    
-            <form action="cadastro.php" method="POST">
+            <form action="cadastrarLivros.php" method="POST">
 
                 <div class="form-group">
                     <i class="fas fa-book"></i>
@@ -51,10 +51,17 @@
                 </div>
 
                 <div class="form-group grid">
-                    <input class="form-control cadastro" type="submit" value="Adicionar">
-                    <input class="form-control cadastro" type="button" value="Voltar" onclick="goBack()">
+                    <input class="form-control cadastro" type="submit" name="cadastrarLivros" value="Adicionar">
+                    <input class="form-control cadastro" type="button" name="voltarLivros" value="Voltar" onclick="goBack()">
                 </div>
             </form>
+            <?php
+             include_once("../Include/livrosResult.php");
+             include_once("../Controller/LivrosController.php");
+             $obj = new LivrosController();
+             $obj->controlaInsercao();
+            ?>
+           
         </div>
     </main>
     
