@@ -7,12 +7,14 @@ require_once("../Model/AlunosDAO.php");
 class AlunosController {
 	public function controlaInsercao() {
 		if (isset($_POST['cadastrarAluno'])) {
-			if (strlen($_POST['nome']) >= 1 && strlen($_POST['telefone']) >= 1) {
+			if (strlen($_POST['nome']) >= 1 && strlen($_POST['matricula']) >= 1 && strlen($_POST['telefone']) >= 1) {
 				$mensagens = array();
 				$nome = trim($_POST["nome"]);
+				$matricula = trim($_POST["matricula"]);
 				$telefone = trim($_POST["telefone"]);
 		  		$alunos = new Alunos();
 		  		$alunos->nome = $nome;
+				$alunos->matricula = $matricula;
 		  		$alunos->telefone = $telefone;
 
 				$DAO  = new AlunosDAO();

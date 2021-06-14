@@ -3,6 +3,7 @@
 class Alunos {
     private $id;
     private $nome;
+    private $matricula;
     private $telefone;
 
     public function __construct() {}

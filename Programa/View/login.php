@@ -45,10 +45,8 @@
                 </div>
             </form>
             <?php
-                include_once("../Include/loginResult.php");
                 include_once("../Controller/LoginController.php");
                 $obj = new LoginController();
-                //$obj->fazerLogin();
                 $obj->controlaConsulta();
             ?>
         </div>

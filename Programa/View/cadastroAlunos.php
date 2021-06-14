@@ -38,6 +38,12 @@
                     <input type="text" class="form-control font" id="nome "name="nome" title="Informe seu nome" placeholder="Nome" required>
                 
                 </div>
+
+                <div class="form-group">
+                    <i class="fas fa-id-card"></i>
+                    <input type="text" class="matricula form-control font" id="matricula" name="matricula" title="Informe a matrícula" placeholder="Matrícula" required>
+                </div>
+
                 <div class="form-group">
                     <i class="fas fa-phone"></i>
                     <input type="text" class="telefone form-control font" id="Telefone" name="telefone" title="Informe o telefone" placeholder="Telefone" required>

@@ -17,11 +17,12 @@ class AlunosDAO {
       if($stmt->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT))
 	    return -1;
 
-      $stmt = $this->a->prepare("INSERT INTO alunos(nome, telefone) VALUES (?, ?)");
+      $stmt = $this->a->prepare("INSERT INTO alunos(nome, matricula, telefone) VALUES (?, ?, ?)");
 
     $this->a->beginTransaction();
     $stmt->bindValue(1, $alunos->nome);
-    $stmt->bindValue(2, $alunos->telefone);
+    $stmt->bindValue(2, $alunos->matricula);
+    $stmt->bindValue(3, $alunos->telefone);
 
       $stmt->execute();
 
