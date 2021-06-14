@@ -22,12 +22,20 @@ html, body {
     background-attachment: fixed;
 }
 
-.fotocadastro {
-    background-image: url("../imagens/livros-cadastro.jpg");
+.fotocadastroLivros {
+    background-image: url("../imagens/livros-cadastroLivros.jpg");
     background-repeat: no-repeat;
     background-position: center;
     background-size: cover;
     background-attachment: fixed;
+}
+
+.fotocadastroAlunos {
+  background-image: url("../imagens/livros-cadastroAlunos.jpg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 ._containerLogin {
@@ -49,14 +57,14 @@ html, body {
     animation-duration: 1.5s;
 }
 
-._containerCadastro {
+._containerCadastroAlunos {
     width: 600px;
-    height: 500px;
+    height: 400px;
     margin: auto;
     margin-top: 50vh;
     top: 50%;     
     transform: translate(0, -43%);
-    padding: 150px 30px;
+    padding: 135px 30px;
     color: white;
     background-color: transparent;
     box-shadow: 0 0 1em black;
@@ -66,6 +74,25 @@ html, body {
 
     animation-name: fade;
     animation-duration: 1.5s;
+}
+
+._containerCadastroLivros {
+  width: 480px;
+  height: 440px;
+  margin: auto;
+  margin-top: 50vh;
+  top: 50%;     
+  transform: translate(0, -43%);
+  padding: 130px 30px;
+  color: white;
+  background-color: transparent;
+  box-shadow: 0 0 1em black;
+  -webkit-box-shadow: 0 0 1em black;
+  -moz-box-shadow: 0 0 1em black;
+  backdrop-filter: saturate(70%) blur(3px);
+
+  animation-name: fade;
+  animation-duration: 1.5s;
 }
 
 .imglogin {

@@ -33,20 +33,20 @@
             <form method="POST" action="login.php">
                 <div class="form-group">
                     <i class="fas fa-user"></i>
-                    <input type="text" class="form-control font" id="user" name="user" title="Usuário padrão da biblioteca" placeholder="Usuário" required>
+                    <input type="text" class="form-control font" id="user" name="user" title="Usuário padrão da biblioteca" size="50" minlength="1" pattern="[a-z0-9._%+-]+" placeholder="Usuário" required>
                 </div>
         
                 <div class="form-group">
                     <i class="fas fa-lock"></i>
-                    <input type="password" class="form-control font" id="senha" name="senha" title="Senha padrão da biblioteca" placeholder="Password" required>
+                    <input type="password" class="form-control font" id="senha" name="senha" title="Senha padrão da biblioteca" size="50" minlength="1" placeholder="Password" required>
                 </div>
                 <div class="form-group">
                     <input class="form-control login" type="submit" name="login" value="Login">
                 </div>
             </form>
             <?php
-                include_once("../Controller/BibliotecaController.php");
-                $obj = new BibliotecaController();
+                include_once("../Controller/LoginController.php");
+                $obj = new LoginController();
                 $obj->fazerLogin();
             ?>
         </div>

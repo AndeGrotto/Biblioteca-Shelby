@@ -25,9 +25,9 @@
     <link rel="stylesheet" href="../Include/css/estilo.css">
 
 </head>
-<body class="fotologin">
+<body class="fotocadastroAlunos">
     <main>
-        <div class="_containerLogin">
+        <div class="_containerCadastroAlunos">
             <img class="imglogin" src="../Include/imagens/avatarLogin.png"> 
             <!--<h3>Login Estoque</h3>-->    
             <form method="POST" action="cadastroAlunos.php">
@@ -43,12 +43,12 @@
 
                 <div class="form-group grid">
                     <input class="form-control cadastro" type="submit" name="cadastrarAluno" value="Cadastrar">
-                    <input class="form-control cadastro" type="submit" name="voltarAluno" value="Voltar" onclick="window.history.go(-1); return false;" action="action">
+                    <input class="form-control cadastro" type="submit" name="voltarAluno" value="Voltar" onclick="goBack()">
                 </div>
             </form>
             <?php
-                include_once("../Controller/BibliotecaController.php");
-                $obj = new BibliotecaController();
+                include_once("../Controller/AlunosController.php");
+                $obj = new AlunosController();
                 $obj->controlaInsercao();
             ?>
         </div>

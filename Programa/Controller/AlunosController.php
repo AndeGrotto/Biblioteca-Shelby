@@ -5,7 +5,7 @@ require_once("../Model/Alunos.php");
 require_once("../Model/AlunosDAO.php");
 require_once("../Model/LoginValidate.php");
 
-class BibliotecaController {
+class AlunosController {
 	public function controlaInsercao() {
 		if (isset($_POST['cadastrarAluno'])) {
 			if (strlen($_POST['nome']) >= 1 && strlen($_POST['telefone']) >= 1) {

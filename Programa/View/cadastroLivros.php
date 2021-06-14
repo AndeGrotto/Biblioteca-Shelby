@@ -25,28 +25,29 @@
     <link rel="stylesheet" href="../Include/css/estilo.css">
 
 </head>
-<body class="fotocadastro">
-    <header>
+<body class="fotocadastroLivros">
+    <header>    
        <!-- Cabeçalho Menu --> 
     </header>
     <main>
-        <div class="_containerCadastro">
+        <div class="_containerCadastroLivros">
             <img class="imgcadastro" src="../Include/imagens/avatarCadastro.png"> 
             <!--<h3>Login Estoque</h3>-->    
             <form action="cadastro.php" method="POST">
+
+                <div class="form-group">
+                    <i class="fas fa-book"></i>
+                    <input type="text" class="isbn form-control font" id="isbn" name="isbn" title="Digite o ISBN do livro" placeholder="ISBN" required>
+                </div>
+
                 <div class="form-group">
                     <i class="fas fa-user"></i>
                     <input type="text" class="form-control font" id="nome" name="nome" title="Digite o nome do produto" placeholder="Nome" required>
                 </div>
-        
-                <div class="form-group">
-                    <i class="fas fa-dollar-sign"></i>
-                    <input type="text" class="preco form-control font" id="Preço" name="preco" title="Digite o valor" placeholder="Preço" required>
-                </div>
 
                 <div class="form-group">
-                    <i class="fas fa-sort-amount-up"></i>
-                    <input type="number" class="form-control font" id="Quantidade" name="quantidade" title="Digite a quantidade" placeholder="Quantidade" required>
+                    <i class="fas fa-book-reader"></i>
+                    <input type="text" class="form-control font" id="autor" name="autor" title="Digite o nome do autor" placeholder="Autor" required>
                 </div>
 
                 <div class="form-group grid">
@@ -77,6 +78,6 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
 
-  <script src="../../Include/js/javascript.js"></script>
+  <script type="text/javascript" src="../Include/js/javascript.js"></script>
 </body>
 </html>
