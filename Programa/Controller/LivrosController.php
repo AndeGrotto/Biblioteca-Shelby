@@ -16,7 +16,7 @@ class LivrosController {
 			$lista = $DAO->Consultar();
 			break;
 		case 2:
-			$lista = $DAO->Excluir();
+			$lista = $DAO->Excluir(4);
 			break;
 		}
 	
