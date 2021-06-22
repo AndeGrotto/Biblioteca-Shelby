@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 15-Jun-2021 às 02:17
+-- Tempo de geração: 22-Jun-2021 às 02:37
 -- Versão do servidor: 10.4.17-MariaDB
 -- versão do PHP: 8.0.2
 
@@ -61,7 +61,8 @@ CREATE TABLE `livros` (
 
 INSERT INTO `livros` (`id`, `isbn`, `nome`, `autor`) VALUES
 (4, '121–21–212–1221–2', 'Arlindo', 'Erminia'),
-(5, '132–13–123–12', 'Arlindo', 'Erminia');
+(5, '132–13–123–12', 'Arlindo', 'Erminia'),
+(6, '154–87–8', 'PF', 'Cabeça');
 
 -- --------------------------------------------------------
 
@@ -118,7 +119,7 @@ ALTER TABLE `alunos`
 -- AUTO_INCREMENT de tabela `livros`
 --
 ALTER TABLE `livros`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de tabela `login`

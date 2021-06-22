@@ -3,10 +3,12 @@
 require_once("../Model/Conect_BD.php");
 require_once("../Model/Livros.php");
 require_once("../Model/LivrosDAO.php");
+require_once("../Model/Alunos.php");
+require_once("../Model/AlunosDAO.php");
 
-class LivrosController {
+class EmprestimoController {
 
-	public function controlaConsulta($op) {
+	public function controlaConsultaLivros($op) {
 		$DAO = new LivrosDAO();
 		$lista = array();
 		$numCol = 3;
@@ -15,28 +17,60 @@ class LivrosController {
 		  case 1:
 			$lista = $DAO->Consultar();
 			break;
-		/*case 2:
-			$lista = $DAO->Excluir(4);
-			break;*/
 		}
 	
 		if(count($lista) > 0) {
 		  for($i = 0; $i < count($lista); $i++) {
 			$isbn = $lista[$i]->isbn;
 			$nome   = $lista[$i]->nome;
-			$autor   = $lista[$i]->autor;
+
 			
 			echo "<tr>";
 			
 			if($isbn)
-			  echo "<td style=\"text-align: center;\">$isbn</td>";
+            echo "<td style=\"text-align: left;\">$isbn</td>";
 			if($nome)
 			  echo "<td style=\"text-align: left;\">$nome</td>";
-			if($autor)
-			  echo "<td style=\"text-align: right;\">$autor</td>";
-			echo "<th><a href=\"../View/cadastrarLivros.php\" class=\"btn btn-primary btn active\" role=\"button\" aria-pressed=\"true\"><i class=\"fas fa-plus-square\"></i></a>";
-			echo "<a href=\"#\" class=\"btn btn-danger\" role=\"button\" aria-pressed=\"true\"><i class=\"fas fa-trash-alt\"></i></a></th>";
-			//echo "<input class=\"btn btn-danger\" role=\"button\" aria-pressed=\"true\"><i class=\"fas fa-trash-alt\"></i></INPUT></th>";
+	
+	
+			//echo "<input class=\"btn btn-danger\" role=\"button\" aria-pressed=\"true\"><i class=\"fas fa-trash-alt\"></i></input></th>";
+
+			echo "</tr>";
+		  }
+		}
+		else {
+		  echo "<tr>";
+		  echo "<td colspan=\"$numCol\">Nenhum registro encontrado!</td>";
+		  echo "</tr>";
+		}
+	  }
+      
+      public function controlaConsultaAlunos($op) {
+		$DAO = new AlunosDAO();
+		$lista = array();
+		$numCol = 3;
+		
+		switch($op) {
+		  case 1:
+			$lista = $DAO->Consultar();
+			break;
+		}
+	
+		if(count($lista) > 0) {
+		  for($i = 0; $i < count($lista); $i++) {
+			$nome = $lista[$i]->nome;
+			$telefone   = $lista[$i]->telefone;
+
+			
+			echo "<tr>";
+			
+			if($nome)
+            echo "<td style=\"text-align: left;\">$nome</td>";
+			if($telefone)
+			  echo "<td style=\"text-align: left;\">$telefone</td>";
+	
+	
+			//echo "<input class=\"btn btn-danger\" role=\"button\" aria-pressed=\"true\"><i class=\"fas fa-trash-alt\"></i></input></th>";
 
 			echo "</tr>";
 		  }
@@ -49,7 +83,8 @@ class LivrosController {
 	  }
 
 
-    public function controlaInsercao() {
+
+    /*public function controlaInsercao() {
 		if (isset($_POST['cadastrarLivros'])) {
 			if (strlen($_POST['isbn']) >= 1 && strlen($_POST['nome']) >= 1 && strlen($_POST['autor']) >= 1) {
 				$mensagens = array();
@@ -79,6 +114,6 @@ class LivrosController {
 				  unset($user);
 			}
 	    }
-	}
+	}*/
 }
 ?>

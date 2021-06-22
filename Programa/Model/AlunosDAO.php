@@ -38,6 +38,42 @@ class AlunosDAO {
 	  return 0;
     }
   }
+
+
+  public function Consultar($query=null) {
+    try {
+	  $items = array();
+	  
+      if($query != null)
+        $stmt = $this->a->query($query);
+      else
+        $stmt = $this->a->query("SELECT * FROM alunos");
+		
+	  $this->a = null;
+	  
+	  while($registro = $stmt->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT))
+	  {
+	    $a = new Alunos();
+		
+		// Sempre verifica se a query SQL retornou a respectiva coluna
+		if(isset($registro["nome"]))
+		  $a->nome = $registro["nome"];
+		if(isset($registro["matricula"]))
+		  $a->matricula = $registro["matricula"];
+		if(isset($registro["telefone"]))
+		  $a->telefone = $registro["telefone"];
+
+		// Ao final, adiciona o registro como um item do array de retorno
+	    $items[] = $a;
+	  }
+	  
+      return $items;
+    }
+	// Em caso de erro, retorna a mensagem:
+	catch(PDOException $e) {
+      echo "Erro: ".$e->getMessage();
+    }
+  }
  
 }
 ?>
