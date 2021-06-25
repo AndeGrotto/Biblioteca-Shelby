@@ -47,7 +47,7 @@
     </style>
 </head>
 
-<body>
+<body class="scroll">
     <title>Listagem dos Livros Cadastrados</title>
     <div class="tabelas">
         <div class="livros">

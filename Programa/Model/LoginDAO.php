@@ -10,7 +10,6 @@ class LoginDAO {
 	$this->u->exec("set names utf8"); 
   }
   
-
   public function Consultar($login) {
     try {
       $stmt = $this->u->query("SELECT * FROM login WHERE usuario = '$login->usuario'");

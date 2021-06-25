@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="../Include/css/estilo.css">
 
 </head>
-<body class="fotocadastroLivros">
+<body class="fotocadastroLivros scroll">
     <header>    
        <!-- Cabeçalho Menu --> 
     </header>

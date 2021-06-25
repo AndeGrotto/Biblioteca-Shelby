@@ -27,7 +27,7 @@
 
 </style>
 </head>
-<body class="fotocadastroAlunos">
+<body class="fotocadastroAlunos scroll">
     <main>
         <div class="_containerCadastroAlunos">
             <img class="imglogin" src="../Include/imagens/avatarCadastroAlunos.png"> 

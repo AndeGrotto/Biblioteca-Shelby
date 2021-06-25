@@ -43,9 +43,19 @@ class LivrosDAO {
 
 
 
-  public function Consultar($query=null) {
+  public function Consultar($op, $param, $value) {
     try {
 	  $items = array();
+
+    switch($op)
+      {
+        case 1:
+          $query = "SELECT * FROM livros";
+          break;
+        case 2:
+          $query = "SELECT * FROM livros WHERE $param=$value";
+          break;      
+      }    
 	  
       if($query != null)
         $stmt = $this->l->query($query);
@@ -75,6 +85,29 @@ class LivrosDAO {
 	// Em caso de erro, retorna a mensagem:
 	catch(PDOException $e) {
       echo "Erro: ".$e->getMessage();
+    }
+  }
+
+
+  public function Excluir($cod) {
+    try {
+      $stmt = $this->l->prepare("DELETE FROM livros WHERE isbn=?");
+
+      $this->l->beginTransaction();
+
+      $stmt->bindValue(1, $cod);
+    
+
+      $stmt->execute();
+      $this->l->commit();
+      $this->l = null;
+
+      return true;
+    }
+
+    catch(PDOException $e) {
+      $this->erro = "Erro: " . $e->getMessage();
+      return false;
     }
   }
  

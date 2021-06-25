@@ -23,47 +23,41 @@
     />
 
     <link rel="stylesheet" href="../Include/css/estilo.css">
-<style>
-    * {
-        font-size: 25px;
-    }
-    table, td, th {
-    border: 1px solid black;
-    }
-
-    th {
-    font-weight: bold;
-    padding: 0 25px;
-    }
-
-    table {
-    border-collapse: collapse;
-    text-align: center;
-    }
-    a {
-    text-decoration: none;
-    }   
-</style>
 </head>
 
 <body>
-    <title>Listagem dos Alunos Cadastrados</title>
-    <table>
-        <tr>
-            <th>Nome</th>
-            <th>Matrícula</th>
-            <th>Telefone</th>
-        </tr>
-        <?php
-        include_once("../controller/AlunosController.php");
-        $obj = new AlunosController();
-        $obj->controlaConsulta(1);
-        ?>
-    </table>
-    <br />
-    <a href="../index.php">
-        <button type="button">Retornar para a página principal</button>
-    </a>
+
+<header>
+        <div class="menu-bar">
+                <ul>
+                    <img class="logo" src="../Include/imagens/imagem6-logo.png"> 
+                    <li><a href="login.php">Login</a></li>
+                    <li><a href="cadastrarLivros.php">Cadastrar Livros</a></li>
+                </ul>     
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>Nome</th>
+                        <th>Matrícula</th>
+                        <th>Telefone</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                        include_once("../Controller/AlunosController.php");
+                        $obj = new AlunosController();
+                        $obj->controlaConsulta(1);
+                    ?>
+                </tbody>
+            </table>
+        </div>
+    </main>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 

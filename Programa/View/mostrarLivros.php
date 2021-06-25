@@ -23,45 +23,41 @@
     />
 
     <link rel="stylesheet" href="../Include/css/estilo.css">
-<style>
-    * {
-        font-size: 25px;
-    }
-    table, td, th {
-    border: 1px solid black;
-    }
-
-    th {
-    font-weight: bold;
-    }
-
-    table {
-    border-collapse: collapse;
-    }
-    a {
-    text-decoration: none;
-    }   
-</style>
 </head>
 
 <body>
-    <title>Listagem dos Livros Cadastrados</title>
-    <table>
-        <tr>
-            <th>ISBN</th>
-            <th>Nome</th>
-            <th>Autor</th>
-        </tr>
-        <?php
-        include_once("../controller/LivrosController.php");
-        $obj = new LivrosController();
-        $obj->controlaConsulta(1);
-        ?>
-    </table>
-    <br />
-    <a href="../index.php">
-        <button type="button">Retornar para a página principal</button>
-    </a>
+
+    <header>
+        <div class="menu-bar">
+                <ul>
+                    <img class="logo" src="../Include/imagens/imagem6-logo.png"> 
+                    <li><a href="login.php">Login</a></li>
+                    <li><a href="cadastrarLivros.php">Cadastrar Livros</a></li>
+                </ul>     
+        </div>
+    </header>
+
+    <main>
+        <div class="container">
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <th>ISBN</th>
+                        <th>Nome</th>
+                        <th>Autor</th>
+                        <th>Ações</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php
+                        include_once("../Controller/LivrosController.php");
+                        $obj = new LivrosController();
+                        $obj->controlaConsulta(1);
+                    ?>
+                </tbody>
+            </table>
+        </div>
+    </main>
 
     <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
 

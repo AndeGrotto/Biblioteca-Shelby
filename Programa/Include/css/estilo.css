@@ -5,14 +5,51 @@
 html, body {
     margin: 0;
     padding: 0;
-    overflow: hidden;
 }
  body {
-    width: 100vw;
-    height: 100vh;
     font-family: 'Fira Sans', sans-serif;
     font-family: 'Josefin Sans', sans-serif;
 }
+
+.scroll {
+  overflow: hidden;
+}
+
+#cabecalho {
+    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.9)),
+      url(../imagens/foto-cabecalho.jpg);
+    height: 1000px;
+    background-position: center;
+    background-size: cover;
+    background-attachment: fixed;
+    display: flex;
+    flex-direction: column;
+}
+
+.cabecalho-text {
+  font-family: "Roboto Slab", serif;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex: 1;
+  color: white;
+}
+
+.cabecalho-text h1 {
+  text-transform: uppercase;
+  font-size: 4em;
+  display: inline-block;
+  font-weight: bold;
+  letter-spacing: 2px;
+  line-height: 120%;
+  text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.6);
+}
+
+/* Menu */
+
+
 
 .fotologin {
     background-image: url("../imagens/livros-login.jpg");
@@ -257,6 +294,89 @@ input[type=text]:focus, input[type=password]:focus, input[type=number]:focus {
     background-color: #cc0000;
     border-color: #cc0000;
     transition: 0.5s;
+}
+
+/* Prévia dos livros */
+#livros {
+  padding: 10px 0 10px 15vw;
+}
+
+#livros img {
+  width: 220px;
+  height: 300px;
+  padding-left: 20px;
+}
+
+/* Tabela */
+
+table {
+  font-size: 20px;
+  margin: auto;
+  margin-top: 10vh;
+} 
+
+.acoes {
+  width: 25vw;
+}
+
+th {
+  width: 15vw;
+}
+
+.btn:first-child {
+  margin-left: 0px;
+}
+
+.btn {
+  margin-left: 20px;
+  width: 150px;
+}
+
+.icone {
+  padding-right: 10px;
+}
+
+/* Menu */
+.menu-bar {
+  font-family: 'Fira Sans', sans-serif;
+  font-family: 'Josefin Sans', sans-serif;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.menu-bar ul{
+  height: 70px;
+  padding: 0px;
+  margin: 0px;
+  background-color: #000000;
+  list-style: none;
+  text-align: center;
+}
+
+.menu-bar ul li {
+  display: inline;
+} 
+
+.menu-bar ul li a{
+
+padding: 20px 10px;
+display: inline-block;
+color: #2b5353;
+text-decoration: none;
+}
+
+.menu-bar ul li a:hover { 
+  color: #fff;
+  transition: 0.8s;
+}
+
+.logo {
+  width: 200px;
+  height: 60px;
+  float: left;
+  margin: 5px 0 5px 10px;
+  position: absolute;
+  left: calc(10px);
 }
 
 

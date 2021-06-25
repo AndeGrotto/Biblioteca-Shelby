@@ -10,33 +10,32 @@ class LivrosController {
 		$DAO = new LivrosDAO();
 		$lista = array();
 		$numCol = 3;
-		
+
 		switch($op) {
 		  case 1:
-			$lista = $DAO->Consultar();
+			$lista = $DAO->Consultar($op, "", "");
 			break;
-		/*case 2:
-			$lista = $DAO->Excluir(4);
-			break;*/
 		}
 	
 		if(count($lista) > 0) {
 		  for($i = 0; $i < count($lista); $i++) {
 			$isbn = $lista[$i]->isbn;
-			$nome   = $lista[$i]->nome;
-			$autor   = $lista[$i]->autor;
+			$nome = $lista[$i]->nome;
+			$autor = $lista[$i]->autor;
 			
 			echo "<tr>";
 			
 			if($isbn)
-			  echo "<td style=\"text-align: center;\">$isbn</td>";
+			  echo "<td>$isbn</td>";
 			if($nome)
-			  echo "<td style=\"text-align: left;\">$nome</td>";
+			  echo "<td>$nome</td>";
 			if($autor)
-			  echo "<td style=\"text-align: right;\">$autor</td>";
-			echo "<th><a href=\"../View/cadastrarLivros.php\" class=\"btn btn-primary btn active\" role=\"button\" aria-pressed=\"true\"><i class=\"fas fa-plus-square\"></i></a>";
-			echo "<a href=\"#\" class=\"btn btn-danger\" role=\"button\" aria-pressed=\"true\"><i class=\"fas fa-trash-alt\"></i></a></th>";
-			//echo "<input class=\"btn btn-danger\" role=\"button\" aria-pressed=\"true\"><i class=\"fas fa-trash-alt\"></i></INPUT></th>";
+			  echo "<td>$autor</td>";
+			  
+		
+			  echo "<th class=\"acoes\"><a href=\"../View/cadastrarLivros.php\" class=\"btn btn-primary btn active\" role=\"button\" aria-pressed=\"true\"><i class=\"icone fas fa-plus-square\"></i>Inserir</a>";
+			  echo "<a href=\"../View/excluirLivros.php?isbn=$isbn\" class=\"btn btn-danger\" role=\"button\" aria-pressed=\"true\"  onclick=\"return ConfirmarDelete();\"><i class=\"icone fas fa-trash-alt\"></i>Excluir</a></th>";
+			  
 
 			echo "</tr>";
 		  }
@@ -56,6 +55,7 @@ class LivrosController {
 				$isbn = trim($_POST["isbn"]);
                 $nome = trim($_POST["nome"]);
 				$autor = trim($_POST["autor"]);
+
 		  		$livros = new Livros();
 		  		$livros->isbn = $isbn;
 				$livros->nome = $nome;
@@ -76,9 +76,30 @@ class LivrosController {
 					header("Location: ../View/cadastrarLivros.php?msg=$msg");
 				  }
 				  
-				  unset($user);
+				  unset($livros);
 			}
 	    }
 	}
+
+	public function controlaExclusao($cod) {
+		$DAO  = new LivrosDAO();
+		$resultado = array();
+
+		$resultado = $DAO->Consultar(2, "isbn", $cod);
+		if($resultado) {
+			$DAO  = new LivrosDAO();
+			$validar = $DAO->Excluir($cod);
+			if($validar) {
+				echo "<p class=\"sucesso fa-blink\">LIVROS DELETADO COM SUCESSO!</p>";
+				header("location: ../View/mostrarLivros.php");
+			}else {
+				echo "<p class=\"erro fa-blink\">NÃO FOI POSSÍVEL EXCLUIR O LIVRO, TENTE NOVAMENTE!</p>";
+			}
+		  } else {
+			echo "<p class=\"erro fa-blink\">ESTE LIVRO NÃO EXISTE!</p>";
+		  }	
+	}
 }
+
+echo "<script type=\"text/javascript\" src=\"../Include/js/javascript.js\"></script>";
 ?>

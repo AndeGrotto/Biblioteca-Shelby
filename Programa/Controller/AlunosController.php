@@ -13,11 +13,8 @@ class AlunosController {
 		
 		switch($op) {
 		  case 1:
-			$lista = $DAO->Consultar();
+			$lista = $DAO->Consultar($op, "", "");
 			break;
-		/*case 2:
-			$lista = $DAO->Excluir(4);
-			break;*/
 		}
 	
 		if(count($lista) > 0) {
@@ -29,14 +26,14 @@ class AlunosController {
 			echo "<tr>";
 			
 			if($nome)
-			  echo "<td style=\"text-align: center;\">$nome</td>";
+			  echo "<td>$nome</td>";
 			if($matricula)
-			  echo "<td style=\"text-align: center;\">$matricula</td>";
+			  echo "<td>$matricula</td>";
 			if($telefone)
-			  echo "<td style=\"text-align: center;\">$telefone</td>";
-			echo "<th><a href=\"../View/cadastrarLivros.php\" class=\"btn btn-primary btn active\" role=\"button\" aria-pressed=\"true\"><i class=\"fas fa-plus-square\"></i></a>";
-			echo "<a href=\"#\" class=\"btn btn-danger\" role=\"button\" aria-pressed=\"true\"><i class=\"fas fa-trash-alt\"></i></a></th>";
-			//echo "<input class=\"btn btn-danger\" role=\"button\" aria-pressed=\"true\"><i class=\"fas fa-trash-alt\"></i></INPUT></th>";
+			  echo "<td>$telefone</td>";
+
+			  echo "<th class=\"acoes\"><a href=\"../View/cadastrarLivros.php\" class=\"btn btn-primary btn active\" role=\"button\" aria-pressed=\"true\"><i class=\"icone fas fa-plus-square\"></i>Inserir</a>";
+			  echo "<a href=\"../View/excluirLivros.php?matricula=$matricula\" class=\"btn btn-danger\" role=\"button\" aria-pressed=\"true\"  onclick=\"return ConfirmarDelete();\"><i class=\"icone fas fa-trash-alt\"></i>Excluir</a></th>";
 
 			echo "</tr>";
 		  }
@@ -56,6 +53,7 @@ class AlunosController {
 				$nome = trim($_POST["nome"]);
 				$matricula = trim($_POST["matricula"]);
 				$telefone = trim($_POST["telefone"]);
+				
 		  		$alunos = new Alunos();
 		  		$alunos->nome = $nome;
 				$alunos->matricula = $matricula;
@@ -76,9 +74,30 @@ class AlunosController {
 					header("Location: ../View/cadastrarAlunos.php?msg=$msg");
 				  }
 				  
-				  unset($user);
+				  unset($alunos);
 			}
 	    }
 	}
-  }
+
+	public function controlaExclusao($cod) {
+		$DAO  = new AlunosDAO();
+		$resultado = array();
+
+		$resultado = $DAO->Consultar(2, "matricula", $cod);
+		if($resultado) {
+			$DAO  = new AlunosDAO();
+			$validar = $DAO->Excluir($cod);
+			if($validar) {
+				echo "<p class=\"sucesso fa-blink\">ALUNOS DELETADO COM SUCESSO!</p>";
+				header("location: ../View/mostrarLivros.php");
+			}else {
+				echo "<p class=\"erro fa-blink\">NÃO FOI POSSÍVEL EXCLUIR O ALUNO, TENTE NOVAMENTE!</p>";
+			}
+		  } else {
+			echo "<p class=\"erro fa-blink\">ESTE LIVRO NÃO EXISTE!</p>";
+		  }	
+	}
+}
+
+echo "<script type=\"text/javascript\" src=\"../Include/js/javascript.js\"></script>";
 ?>

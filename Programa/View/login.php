@@ -25,7 +25,7 @@
     <link rel="stylesheet" href="../Include/css/estilo.css">
 
 </head>
-<body class="fotologin">
+<body class="fotologin scroll">
     <main>
         <div class="_containerLogin">
             <img class="imglogin" src="../Include/imagens/avatarLogin.png"> 

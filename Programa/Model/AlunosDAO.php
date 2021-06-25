@@ -40,10 +40,20 @@ class AlunosDAO {
   }
 
 
-  public function Consultar($query=null) {
+  public function Consultar($op, $param, $value) {
     try {
 	  $items = array();
 	  
+    switch($op)
+    {
+      case 1:
+        $query = "SELECT * FROM alunos";
+        break;
+      case 2:
+        $query = "SELECT * FROM alunos WHERE $param=$value";
+        break;      
+    }    
+
       if($query != null)
         $stmt = $this->a->query($query);
       else
@@ -72,6 +82,28 @@ class AlunosDAO {
 	// Em caso de erro, retorna a mensagem:
 	catch(PDOException $e) {
       echo "Erro: ".$e->getMessage();
+    }
+  }
+
+  public function Excluir($cod) {
+    try {
+      $stmt = $this->a->prepare("DELETE FROM alunos WHERE matricula=?");
+
+      $this->a->beginTransaction();
+
+      $stmt->bindValue(1, $cod);
+    
+
+      $stmt->execute();
+      $this->a->commit();
+      $this->a = null;
+
+      return true;
+    }
+
+    catch(PDOException $e) {
+      $this->erro = "Erro: " . $e->getMessage();
+      return false;
     }
   }
  
