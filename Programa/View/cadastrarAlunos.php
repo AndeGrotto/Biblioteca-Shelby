@@ -51,7 +51,7 @@
 
                 <div class="form-group grid">
                     <input class="form-control cadastro" type="submit" name="cadastrarAluno" value="Cadastrar">
-                    <input class="form-control cadastro" type="submit" name="voltarAluno" value="Voltar" onclick="goBack()">
+                    <input class="form-control cadastro" type="submit" name="voltarAluno" value="Voltar" onclick="window.location.href='mostrarAlunos.php'">
                 </div>
             </form>
             <?php

@@ -32,8 +32,8 @@ class AlunosController {
 			if($telefone)
 			  echo "<td>$telefone</td>";
 
-			  echo "<th class=\"acoes\"><a href=\"../View/cadastrarLivros.php\" class=\"btn btn-primary btn active\" role=\"button\" aria-pressed=\"true\"><i class=\"icone fas fa-plus-square\"></i>Inserir</a>";
-			  echo "<a href=\"../View/excluirLivros.php?matricula=$matricula\" class=\"btn btn-danger\" role=\"button\" aria-pressed=\"true\"  onclick=\"return ConfirmarDelete();\"><i class=\"icone fas fa-trash-alt\"></i>Excluir</a></th>";
+			  echo "<th class=\"acoes\"><a href=\"../View/cadastrarLivros.php\" class=\"btn btn-success\" role=\"button\" aria-pressed=\"true\"><i class=\"icone fas fa-plus-square\"></i>Inserir</a>";
+			  echo "<a href=\"../View/excluirAlunos.php?matricula=$matricula\" class=\"btn btn-danger\" role=\"button\" aria-pressed=\"true\"  onclick=\"return ConfirmarDelete();\"><i class=\"icone fas fa-trash-alt\"></i>Excluir</a></th>";
 
 			echo "</tr>";
 		  }
@@ -89,7 +89,7 @@ class AlunosController {
 			$validar = $DAO->Excluir($cod);
 			if($validar) {
 				echo "<p class=\"sucesso fa-blink\">ALUNOS DELETADO COM SUCESSO!</p>";
-				header("location: ../View/mostrarLivros.php");
+				header("location: ../View/mostrarAlunos.php");
 			}else {
 				echo "<p class=\"erro fa-blink\">NÃO FOI POSSÍVEL EXCLUIR O ALUNO, TENTE NOVAMENTE!</p>";
 			}

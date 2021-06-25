@@ -27,15 +27,35 @@
 
 <body>
 
-    <header>
-        <div class="menu-bar">
-                <ul>
-                    <img class="logo" src="../Include/imagens/imagem6-logo.png"> 
-                    <li><a href="login.php">Login</a></li>
-                    <li><a href="cadastrarLivros.php">Cadastrar Livros</a></li>
-                </ul>     
-        </div>
-    </header>
+<header>
+
+<input type="checkbox" id="bt_menu">
+<label for="bt_menu">&#9776;</label>
+
+<nav class="menu">
+        <ul>
+
+            <li><a href="login.php">Login</a></li>
+            <li><a href="telaPrincipal.html">Home</a></li>
+            <li><a href="#">Cadastrar</a>
+                <ul> 
+                    <li><a href="cadastrarAlunos.php">Alunos</a></li>
+                    <li><a href="cadastrarEmprestimo.php">Empréstimo</a></li>
+                    <li><a href="cadastrarLivros.php">Livros</a></li>
+                </ul>
+                </li>
+
+            <li><a href="#">Tabelas</a>
+                <ul> 
+                    <li><a href="mostrarAlunos.php">Alunos</a></li>
+                    <li><a href="mostrarEmprestimo.php">Empréstimo</a></li>
+                    <li><a href="mostrarLivros.php">Livros</a></li>
+                </ul>
+            </li>
+        </ul>    
+        <a href="telaPrincipal.html" class="log"><img class="logo" src="../Include/imagens/imagem6-logo.png"> </a>
+</nav>             
+</header>
 
     <main>
         <div class="container">
@@ -66,7 +86,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx" crossorigin="anonymous"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.mask/1.14.11/jquery.mask.min.js"></script>
-
 
     <script type="text/javascript" src="../Include/js/javascript.js"></script>
 

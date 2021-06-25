@@ -33,7 +33,7 @@ class LivrosController {
 			  echo "<td>$autor</td>";
 			  
 		
-			  echo "<th class=\"acoes\"><a href=\"../View/cadastrarLivros.php\" class=\"btn btn-primary btn active\" role=\"button\" aria-pressed=\"true\"><i class=\"icone fas fa-plus-square\"></i>Inserir</a>";
+			  echo "<th class=\"acoes\"><a href=\"../View/cadastrarLivros.php\" class=\"btn btn-success\" role=\"button\" aria-pressed=\"true\"><i class=\"icone fas fa-edit\"></i>Editar</a>";
 			  echo "<a href=\"../View/excluirLivros.php?isbn=$isbn\" class=\"btn btn-danger\" role=\"button\" aria-pressed=\"true\"  onclick=\"return ConfirmarDelete();\"><i class=\"icone fas fa-trash-alt\"></i>Excluir</a></th>";
 			  
 
