@@ -5,6 +5,8 @@ require_once("../Model/Livros.php");
 require_once("../Model/LivrosDAO.php");
 require_once("../Model/Alunos.php");
 require_once("../Model/AlunosDAO.php");
+require_once("../Model/EmprestimoDAO.php");
+require_once("../Model/Emprestimo.php");
 
 class EmprestimoController {
 
@@ -15,22 +17,26 @@ class EmprestimoController {
 		
 		switch($op) {
 		  case 1:
-			$lista = $DAO->Consultar();
+			$lista = $DAO->Consultar($op, "","");
 			break;
 		}
 	
 		if(count($lista) > 0) {
 		  for($i = 0; $i < count($lista); $i++) {
+			
 			$isbn = $lista[$i]->isbn;
-			$nome   = $lista[$i]->nome;
-
+			$nome  = $lista[$i]->nome;
+			$autor = $lista[$i]->autor;
 			
 			echo "<tr>";
-			
+	
 			if($isbn)
-            echo "<td style=\"text-align: left;\">$isbn</td>";
+            echo "<td> <INPUT TYPE=\"RADIO\" NAME=\"radioISBN\" value=\"{$isbn}\"></td>";
 			if($nome)
-			  echo "<td style=\"text-align: left;\">$nome</td>";
+			  echo "<td>$nome</td>";
+			if($autor)
+			  echo "<td>$autor</td>";
+			
 	
 	
 			//echo "<input class=\"btn btn-danger\" role=\"button\" aria-pressed=\"true\"><i class=\"fas fa-trash-alt\"></i></input></th>";
@@ -52,22 +58,26 @@ class EmprestimoController {
 		
 		switch($op) {
 		  case 1:
-			$lista = $DAO->Consultar();
+			$lista = $DAO->Consultar($op, "", "");
 			break;
 		}
 	
 		if(count($lista) > 0) {
 		  for($i = 0; $i < count($lista); $i++) {
+			$id = $lista[$i]->id;
 			$nome = $lista[$i]->nome;
-			$telefone   = $lista[$i]->telefone;
+			$matricula = $lista[$i]->matricula;
+			$telefone = $lista[$i]->telefone;
 
 			
 			echo "<tr>";
 			
+			if($id)
+				echo "<td> <INPUT TYPE=\"RADIO\" NAME=\"radioID\" value=\"{$id}\"></td>";
 			if($nome)
-            echo "<td style=\"text-align: left;\">$nome</td>";
+             echo "<td style=\"text-align: left;\">$nome</td>";
 			if($telefone)
-			  echo "<td style=\"text-align: left;\">$telefone</td>";
+			 echo "<td style=\"text-align: left;\">$telefone</td>";
 	
 	
 			//echo "<input class=\"btn btn-danger\" role=\"button\" aria-pressed=\"true\"><i class=\"fas fa-trash-alt\"></i></input></th>";
@@ -84,20 +94,47 @@ class EmprestimoController {
 
 
 
-    /*public function controlaInsercao() {
-		if (isset($_POST['cadastrarLivros'])) {
-			if (strlen($_POST['isbn']) >= 1 && strlen($_POST['nome']) >= 1 && strlen($_POST['autor']) >= 1) {
-				$mensagens = array();
-				$isbn = trim($_POST["isbn"]);
-                $nome = trim($_POST["nome"]);
-				$autor = trim($_POST["autor"]);
-		  		$livros = new Livros();
-		  		$livros->isbn = $isbn;
-				$livros->nome = $nome;
-		  		$livros->autor = $autor;
 
-				$DAO  = new LivrosDAO();
-				$resultado = $DAO->Inserir($livros);
+
+    public function controlaInsercaoEmprestimo() {
+		$codAluno = $_POST['radioID'];
+		$codISBN = $_POST['radioISBN'];
+
+		if(isset($_POST['radioID'])){
+			if(!empty($_POST['radioID'])) {
+				echo '  ' . $_POST['radioID'];
+			} else {
+				echo 'Please select the value.';
+			}
+		}
+			
+		if(isset($_POST['radioISBN'])){
+			if(!empty($_POST['radioISBN'])) {
+				echo '  ' . $_POST['radioISBN'];
+			} else {
+				echo 'Please select the value.';
+			}
+		}
+
+
+			if (strlen($_POST['codEmprestimo']) >= 1 && strlen($_POST['dataEmprestimo']) >= 1 && strlen($_POST['dataDevolucao']) >= 1) {
+
+				$mensagens = array();
+				$codEmprestimo = trim($_POST["codEmprestimo"]);
+                $dataEmprestimo = trim($_POST["dataEmprestimo"]);
+				$dataDevolucao = trim($_POST["dataDevolucao"]);
+				$codAluno = trim($_POST['radioID']);
+				$codISBN =  trim($_POST['radioISBN']);
+		  		$emprestimo = new Emprestimo();
+		  		$emprestimo->codEmprestimo = $codEmprestimo;
+				$emprestimo->dataEmprestimo = $dataEmprestimo;
+		  		$emprestimo->dataDevolucao = $dataDevolucao;
+				$emprestimo->codAluno = $codAluno;
+				$emprestimo->codISBN = $codISBN;
+
+
+				$DAO  = new EmprestimoDAO();
+				$resultado = $DAO->Inserir($emprestimo);
 
 				if($resultado == 1) {
 					echo "<p class=\"sucesso fa-blink\">LIVROS INSERIDO COM SUCESSO!</p>";
@@ -108,12 +145,12 @@ class EmprestimoController {
 				  else {
 					$mensagens[] = "ERRO NO BANCO DE DADOS: $DAO->erro";
 					$msg = serialize($mensagens);
-					header("Location: ../View/cadastrarLivros.php?msg=$msg");
+					header("Location: ../View/cadastrarEmprestimo.php?msg=$msg");
 				  }
 				  
 				  unset($user);
 			}
-	    }
-	}*/
+	    
+	}
 }
 ?>

@@ -260,15 +260,16 @@ section {
 #local-img {
   background-image: url(../Imagens/Livro3.png);
   background-size: cover;
-  height: 500px;
+  height: 1100px;
 }
 #pattern-img {
   background-image: url(../imagens/pattern.png);
   background-size: cover;
   background-attachment: fixed;
 }
+
 .ident-area {
-  margin-top: 16%;
+  margin-top: 50%;
 }
 .ident-area h4 {
   text-transform: uppercase;
@@ -436,7 +437,7 @@ footer .quick-links {
 .navbar-centered .nav-item.active .nav-link {
   color: #fd4800;
 
-}/* CRUD */
+}/*    */
 .team-area {
   margin: 64px 0px;
 }
