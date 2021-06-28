@@ -32,7 +32,7 @@ class AlunosController {
 			if($telefone)
 			  echo "<td>$telefone</td>";
 
-			  echo "<th class='acoes'><div class='align-bt'><a href='../View/cadastrarLivros.php' class='btn btn-success' role='button' aria-pressed='true'><i class='fas fa-edit'></i></a>
+			  echo "<th class='acoes'><div class='align-bt'>
 			  <a href='../View/excluirAlunos.php?matricula=$matricula' class='btn btn-danger' role='button' aria-pressed='true'  onclick='return ConfirmarDelete();'><i class=' fas fa-trash-alt'></i></a></div></th>";
 
 			echo "</tr>";

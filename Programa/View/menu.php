@@ -3,7 +3,8 @@
 	<link rel="stylesheet" href="../Include/css/menu.css">
 </head>
 <body class="scroll">
-  <a href="login.html" class="logo" target="_blank">
+
+  <a href="menu.php" class="logo" target="_blank">
 		<img src="../Include/imagens/imagem6.png" alt="">
 	</a>
 
@@ -11,7 +12,7 @@
   	<label for="menu-icon"></label>
   	<nav class="nav"> 		
   		<ul class="pt-5">
-  			<li><a href="telaPrincipal.html">Home</a></li>
+  			<li><a href="paginaInicial.html">Home</a></li>
 			<li><a href="mostrarAlunos.php">Mostrar alunos</a></li>
   			<li><a href="mostrarEmprestimo.php">Mostrar empréstimos</a></li>
         	<li><a href="mostrarLivros.php">Mostrar livros</a></li>
@@ -20,9 +21,6 @@
 			<li><a href="cadastrarLivros.php">Cadastrar livro</a></li>
   		</ul>
   	</nav>
-
   	<div class="section-center">
   		<h1 class="mb-0">Menu da Biblioteca</h1>
   	</div>
-
-

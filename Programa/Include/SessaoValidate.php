@@ -30,7 +30,7 @@
       echo "<script>";
       echo "alert(\"Você não efetuou o LOGIN!\");";
       echo "</script>";
-      echo "location = \"../View/login.php\";</script>";  /* Direciona para a página de login */
+      echo "location = \"login.php\";</script>";  /* Direciona para a página de login */
     }
     else {
       echo "<script>";
@@ -40,8 +40,8 @@
   }
   else {  // Se um dos campos for vazio
     echo "<script>";
-    echo "alert(\"Você não efetuou o LOGINnnn!\");";
-    echo "location = \"../View/login.php\";</script>";  /* Direciona para a página de login */
+    echo "alert(\"Você não efetuou o LOGIN!\");";
+    echo "location = \"login.php\";</script>";  /* Direciona para a página de login */
     echo "</script>";
   }
 ?>

@@ -4,7 +4,7 @@
             <div class="container-fluid">
                 <div class="table-responsive-xl table-hover">
                     <div class="botao">
-                        <button onclick="window.location.href='cadastrarAlunos.php'" class="btn btn-primary">
+                        <button onclick="window.location.href='cadastrarLivros.php'" class="btn btn-primary">
                             <i class="fa fa-plus-square"></i> Adicionar
                         </button>
                     </div>

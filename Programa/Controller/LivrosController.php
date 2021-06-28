@@ -32,7 +32,7 @@ class LivrosController {
 			if($autor)
 			  echo "<td>$autor</td>";
 			  
-			  echo "<th class='acoes'><div class='align-bt'><a href='../View/editarLivros.php?isbn=$isbn&nome=$nome&autor=$autor' class='btn btn-success' role='button' aria-pressed='true'><i class='fas fa-edit'></i></a>
+			  echo "<th class='acoes'><div class='align-bt'>
 			  <a href='../View/excluirLivros.php?isbn=$isbn' class='btn btn-danger' role='button' aria-pressed='true'  onclick='return ConfirmarDelete();'><i class=' fas fa-trash-alt'></i></a></div></th>";
 		  
 			  echo "</tr>";
@@ -88,44 +88,7 @@ class LivrosController {
 	}
 
 
-	public function controlaAlteracao() {
 
-		if (isset($_GET['isbn']) && isset($_GET['nome']) && isset($_GET['autor'])) {
-
-			$isbn = $_GET['isbn'];
-			$nome = $_GET['nome'];
-			$autor = $_GET['autor'];
-
-			$livro = new Livros();
-
-			$livro->isbn = $isbn;
-			$livro->nome = $nome;
-			$livro->autor = $autor;
-			$DAO = new LivrosDAO();
-			$livro_atual = $DAO->Consultar(2, "isbn", $isbn);
-			$DAO  = new LivrosDAO();
-			$result = $DAO->Atualizar($livro);
-
-			if($result == 1)
-			{
-			  echo"<div class=\"alert alert-success\" role=\"alert\">
-			  Livro editado com sucesso!
-			  </div>";
-			}
-			else if($result == -1) {
-			  echo"<div class=\"alert alert-danger\" role=\"alert\">
-			  Não foi possivel editar o livro!
-			  </div>";
-			}	  
-			else {
-			  $mensagens[] = "ERRO NO BANCO DE DADOS: $DAO->erro";
-			  $msg = serialize($mensagens);
-			  header("Location: ../View/cadastrarLivros.php?msg=$msg");
-			}
-
-		unset($livros);
-		}
-	}
 
 	public function controlaExclusao($cod) {
 		$DAO  = new LivrosDAO();
@@ -142,9 +105,9 @@ class LivrosController {
 				echo "<p class=\"erro fa-blink\">NÃO FOI POSSÍVEL EXCLUIR O LIVRO, TENTE NOVAMENTE!</p>";
 			}
 		}
+		unset($resultado);
 	}
 
 }
-echo "<script type=\"text/javascript\" src=\"../Include/js/javascript.js\"></script>";
 
 ?>

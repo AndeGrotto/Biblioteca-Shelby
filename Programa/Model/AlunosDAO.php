@@ -65,7 +65,6 @@ class AlunosDAO {
 	  {
 	    $a = new Alunos();
 		
-		// Sempre verifica se a query SQL retornou a respectiva coluna
 		if(isset($registro["nome"]))
 		  $a->nome = $registro["nome"];
 		if(isset($registro["matricula"]))
@@ -73,13 +72,12 @@ class AlunosDAO {
 		if(isset($registro["telefone"]))
 		  $a->telefone = $registro["telefone"];
 
-		// Ao final, adiciona o registro como um item do array de retorno
 	    $items[] = $a;
 	  }
 	  
       return $items;
     }
-	// Em caso de erro, retorna a mensagem:
+
 	catch(PDOException $e) {
       echo "Erro: ".$e->getMessage();
     }

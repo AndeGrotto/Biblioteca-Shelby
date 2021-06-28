@@ -1,0 +1,493 @@
+* {
+  margin: 0px;
+  padding: 0px;
+  box-sizing: border-box;
+  line-height: 100%;
+}
+body {
+  margin: 0;
+  position: relative;
+  background: #1f1b1b;
+  color: white;
+  font-family: "Roboto Slab", serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Roboto Slab", serif;
+}
+
+section {
+  margin: 64px 0px;
+}
+
+#cabecalho-principal {
+  background: linear-gradient(rgba(36, 36, 36, 0.7), rgba(0, 0, 0, 0.9)),
+    url(../imagens/foto-cabecalho.jpg);
+  height: 1000px;
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
+}
+
+.social-header {
+  width: 20%;
+  height: 50px;
+  margin: 0 0 0 80%;
+  line-height: 50px;
+  text-align: right;
+  font-size: 20px;
+  display: none;
+}
+
+.social-header a {
+  padding: 5px 7px 5px 7px;
+  text-align: center;
+  background-color: white;
+  border-radius: 50%;
+  filter: brightness(50%);
+  margin: 0 5px 0 5px;
+}
+
+.social-header a:hover {
+  filter: brightness(100%);
+  transition: 0.8s;
+}
+
+.menu-options {
+  height: 80px;
+  font-size: 24px;
+  text-transform: uppercase;
+  font-weight: bold;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.6);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0px 32px;
+}
+.menu-options ul {
+  height: 100vh;
+  width: 100vw;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: black;
+  margin: 0px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  z-index: 200;
+  visibility: hidden;
+}
+
+.menu-options ul li {
+  list-style: none;
+  line-height: 200%;
+}
+
+.menu-options a {
+  padding: 0 8px 0 8px;
+  color: #63531d;
+  text-decoration: none;
+}
+
+.menu-options a:hover {
+  color: white;
+  transition: 0.5s;
+  cursor: pointer;
+  text-shadow: 0px 0px 5px #fff;
+}
+
+#collapse-button label {
+  cursor: pointer;
+}
+
+#collapse-button input {
+  visibility: hidden;
+}
+
+#collapse-button input:checked ~ #menu {
+  visibility: visible;
+}
+
+.cabecalho-text {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex: 1;
+  color: white;
+}
+.cabecalho-text h1 {
+  text-transform: uppercase;
+  font-size: 4em;
+  display: inline-block;
+  font-weight: bold;
+  letter-spacing: 2px;
+  line-height: 120%;
+  text-shadow: 0px 0px 2px rgba(0, 0, 0, 0.6);
+}
+
+.cabecalho-text h2 {
+  font-size: 2em;
+  font-weight: lighter;
+  margin-top: 8px;
+}
+
+/* Livros */
+.team-area {
+  margin: 64px 0px;
+}
+
+#team .member {
+  overflow: hidden;
+  position: relative;
+  border-radius: 8px;
+  margin: 8px;
+}
+
+#team .member img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.4s;
+}
+
+#team .member img:hover {
+  transform: scale(1.1);
+}
+
+#team .member .member-body {
+  background-color: rgb(115, 98, 49, 0.8);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: white;
+  height: 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+#team .member .member-body h5 {
+  font-size: 1.4rem;
+  line-height: 120%;
+  font-weight: bold;
+  margin: 0px;
+}
+
+#team .member .member-body span {
+  font-weight: lighter;
+  font-size: 0.9rem;
+}
+
+.main-title {
+  text-align: center;
+  font-size: 3em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 0 32px 0;
+}
+
+.main-title::before,
+.main-title::after {
+  content: "";
+  width: 20%;
+  height: 1px;
+  margin: 0px 32px;
+  line-height: 100%;
+}
+
+.main-title::before {
+  background-image: linear-gradient(90deg, transparent, #333);
+}
+
+.main-title::after {
+  background-image: linear-gradient(-90deg, transparent, #333);
+}
+
+.col-md-3 {
+  margin-top: 50px;
+}
+
+/* Divisória */
+.main-btn {
+  background-color: #63531d;
+  color: #fff;
+  text-transform: uppercase;
+  width: 200px;
+  height: 60px;
+  padding: 10px 20px;
+  border-radius: 30px;
+  border: 3px solid transparent;
+  transition: 0.5s;
+}
+#apply-btn {
+  display: block;
+  height: auto;
+  width: 180px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 30px;
+  background-color: transparent;
+  border-color: #fff;
+}
+
+#apply-btn:hover {
+  color: #fff;
+  border-color: #63531d;
+  background-color: #63531d;
+  text-decoration: none;
+}
+#apply-area {
+  color: white;
+  text-align: center;
+}
+#local-img {
+  background-image: url(../Imagens/Livro3.png);
+  background-size: cover;
+  height: 500px;
+}
+#pattern-img {
+  background-image: url(../imagens/pattern.png);
+  background-size: cover;
+  background-attachment: fixed;
+}
+.ident-area {
+  margin-top: 16%;
+}
+.ident-area h4 {
+  text-transform: uppercase;
+  margin-bottom: 3%;
+}
+
+/* Divisória 2 */
+
+#apply-area-two {
+  color: white;
+  text-align: center;
+}
+#tesoura-img {
+  background-image: url(../imagens/local1.jpg);
+  background-size: cover;
+  height: 500px;
+}
+#geometrica-img {
+  background-image: url(../imagens/cropped.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+}
+.ident-area-two {
+  margin-top: 20%;
+}
+.ident-area-two h4,
+h6 {
+  text-transform: uppercase;
+  margin-bottom: 3%;
+}
+
+/* Rodapé */
+a {
+  color: #6c757d;
+}
+
+a:hover {
+  color: #63531d;
+  text-decoration: none;
+}
+
+::selection {
+  background: #63531d;
+  text-shadow: none;
+}
+
+footer {
+  padding: 2rem 0;
+  background-color: #171616;
+  color: #6c757d;
+}
+
+.footer-column:not(:first-child) {
+  padding-top: 2rem;
+}
+@media (min-width: 768px) {
+  .footer-column:not(:first-child) {
+    padding-top: 0rem;
+  }
+}
+
+.footer-column {
+  text-align: center;
+}
+.footer-column .nav-item .nav-link {
+  padding: 4px 0;
+}
+.footer-column .nav-item span.nav-link:hover {
+  color: #6c757d;
+}
+.footer-column .nav-item span.footer-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #fff;
+  text-transform: uppercase;
+  padding-bottom: 8px;
+}
+.footer-column .nav-item .fas {
+  margin-right: 0.5rem;
+}
+.footer-column ul {
+  display: inline-block;
+}
+@media (min-width: 768px) {
+  .footer-column ul {
+    text-align: left;
+  }
+}
+
+ul.social-buttons {
+  margin-bottom: 0;
+}
+
+ul.social-buttons li a:active,
+ul.social-buttons li a:focus,
+ul.social-buttons li a:hover {
+  background-color: #63531d;
+}
+
+ul.social-buttons li a {
+  font-size: 20px;
+  line-height: 40px;
+  display: block;
+  width: 40px;
+  height: 40px;
+  -webkit-transition: all 0.3s;
+  -moz-transition: all 0.3s;
+  transition: all 0.3s;
+  color: #fff;
+  border-radius: 100%;
+  outline: 0;
+  background-color: #1a1d20;
+}
+
+ul.social-buttons li a .fab {
+  color: white;
+}
+
+footer .quick-links {
+  font-size: 90%;
+  line-height: 40px;
+  margin-bottom: 0;
+  text-transform: none;
+}
+
+.copyright {
+  color: white;
+}
+
+.fa-ellipsis-h {
+  color: white;
+  padding: 2rem 0;
+}
+
+.navbar .navbar-header,
+.navbar-collapse {
+  float: none;
+  display: inline-block;
+  vertical-align: top;
+}
+
+@media (max-width: 768px) {
+  .navbar-collapse {
+    display: block;
+  }
+}
+
+.navbar-centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  padding-top: 24px;
+}
+
+.navbar-centered .nav {
+  margin-top: 8px;
+  text-shadow: 2px 2px rgba(0, 0, 0, 0.6);
+}
+
+.navbar-centered .nav-link {
+  font-size: 1.5em;
+}
+
+.navbar-centered .nav-item.active .nav-link {
+  color: #fd4800;
+
+}/* CRUD */
+.team-area {
+  margin: 64px 0px;
+}
+
+#CRUD .member {
+  overflow: hidden;
+  position: relative;
+  border-radius: 8px;
+  margin: 8px;
+}
+
+#CRUD .member img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+
+  transition: cubic-bezier(0.075, 0.82, 0.165, 1) 0.4s;
+}
+
+#CRUD .member img:hover {
+  transform: scale(1.1);
+}
+
+#CRUD .member .member-body {
+  background-color: rgba(255, 81, 0, 0.8);
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: white;
+  height: 64px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+#CRUD .member .member-body h5 {
+  font-size: 1.4rem;
+  line-height: 120%;
+  font-weight: bold;
+  margin: 0px;
+}
+
+#CRUD .member .member-body span {
+  font-weight: lighter;
+  font-size: 0.9rem;
+}
+.ident-CRUD {
+  line-height: 150%;
+  padding-left: 10px;
+}
+

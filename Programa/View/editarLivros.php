@@ -1,6 +1,6 @@
 
 
-    <?php require '__header.phtml'; ?>
+<?php require '__header.phtml'; ?>
 <?php require '__menu.phtml'; ?>
 
 <div class="container">
@@ -19,7 +19,7 @@
             include_once("../Include/livrosResult.php");
             include_once("../Controller/LivrosController.php");
             $obj = new LivrosController();
-            $obj->controlaAlteracao();
+            $obj->controlaAlteracao($isbn, $nome, $autor);
         ?>
     <div class="page-header">
         <h2>Adicionar livro</h2>
@@ -28,10 +28,10 @@
         </a>
     </div>
     
-    <form method="POST" action="cadastrarLivros.php">
+    <form method="POST" action="mostrarLivros.php">
         <div class="mb-3">
             <label for="input-isbn" class="form-label">ISBN</label>
-            <input type="text" class="isbn form-control font" id="isbn" name="isbn" value="<?php print $isbn; ?>" disabled>
+            <input type="text" class="isbn form-control font" id="isbn" name="isbn" value="<?php print $isbn; ?>">
         </div>
 
         <div class="mb-3">
@@ -44,7 +44,7 @@
             <input type="text" class="form-control font" id="autor" name="autor" value="<?php print $autor; ?>">
         </div>
 
-        <button type="submit" class="btn btn-primary">Cadastrar livro</button>
+        <button type="submit" class="btn btn-primary">Editar livro</button>
     </form>
 </div>
 
