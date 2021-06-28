@@ -32,13 +32,11 @@ class LivrosController {
 			if($autor)
 			  echo "<td>$autor</td>";
 			  
-		
-			  echo "<th class=\"acoes\"><a href=\"../View/cadastrarLivros.php\" class=\"btn btn-success\" role=\"button\" aria-pressed=\"true\"><i class=\"icone fas fa-edit\"></i>Editar</a>";
-			  echo "<a href=\"../View/excluirLivros.php?isbn=$isbn\" class=\"btn btn-danger\" role=\"button\" aria-pressed=\"true\"  onclick=\"return ConfirmarDelete();\"><i class=\"icone fas fa-trash-alt\"></i>Excluir</a></th>";
-			  
-
-			echo "</tr>";
-		  }
+			  echo "<th class='acoes'><div class='align-bt'><a href='../View/editarLivros.php?isbn=$isbn&nome=$nome&autor=$autor' class='btn btn-success' role='button' aria-pressed='true'><i class='fas fa-edit'></i></a>
+			  <a href='../View/excluirLivros.php?isbn=$isbn' class='btn btn-danger' role='button' aria-pressed='true'  onclick='return ConfirmarDelete();'><i class=' fas fa-trash-alt'></i></a></div></th>";
+		  
+			  echo "</tr>";
+			}
 		}
 		else {
 		  echo "<tr>";
@@ -47,28 +45,37 @@ class LivrosController {
 		}
 	  }
 
+	  private function preparaDados()
+	  {
+		$livros = new Livros();
+		
+		$isbn = trim($_POST["isbn"]);
+        $nome = trim($_POST["nome"]);
+		$autor = trim($_POST["autor"]);
+
+		$livros->isbn = $isbn;
+		$livros->nome = $nome;
+		$livros->autor = $autor;
+		
+		return $livros;    
+	  }
 
     public function controlaInsercao() {
-		if (isset($_POST['cadastrarLivros'])) {
-			if (strlen($_POST['isbn']) >= 1 && strlen($_POST['nome']) >= 1 && strlen($_POST['autor']) >= 1) {
-				$mensagens = array();
-				$isbn = trim($_POST["isbn"]);
-                $nome = trim($_POST["nome"]);
-				$autor = trim($_POST["autor"]);
-
-		  		$livros = new Livros();
-		  		$livros->isbn = $isbn;
-				$livros->nome = $nome;
-		  		$livros->autor = $autor;
+		if (isset($_POST['isbn']) >= 1 && isset($_POST['nome']) >= 1 && isset($_POST['autor']) >= 1) {
 
 				$DAO  = new LivrosDAO();
-				$resultado = $DAO->Inserir($livros);
-
-				if($resultado == 1) {
-					echo "<p class=\"sucesso fa-blink\">LIVROS INSERIDO COM SUCESSO!</p>";
+				$livros = $this->preparaDados();
+				$result = $DAO->Inserir($livros);
+				  if($result == 1)
+				  {
+					echo"<div class=\"alert alert-success\" role=\"alert\">
+            		Livro inserido com sucesso!
+        			</div>";
 				  }
-				  else if($resultado == -1) {
-					echo "<p class=\"erro fa-blink\">LIVROS JÁ EXISTE, TENTE NOVAMENTE!</p>";
+				  else if($result == -1) {
+					echo"<div class=\"alert alert-danger\" role=\"alert\">
+            		Livro já existe, tente novamente outro!
+        			</div>";
 				  }	  
 				  else {
 					$mensagens[] = "ERRO NO BANCO DE DADOS: $DAO->erro";
@@ -78,7 +85,46 @@ class LivrosController {
 				  
 				  unset($livros);
 			}
-	    }
+	}
+
+
+	public function controlaAlteracao() {
+
+		if (isset($_GET['isbn']) && isset($_GET['nome']) && isset($_GET['autor'])) {
+
+			$isbn = $_GET['isbn'];
+			$nome = $_GET['nome'];
+			$autor = $_GET['autor'];
+
+			$livro = new Livros();
+
+			$livro->isbn = $isbn;
+			$livro->nome = $nome;
+			$livro->autor = $autor;
+			$DAO = new LivrosDAO();
+			$livro_atual = $DAO->Consultar(2, "isbn", $isbn);
+			$DAO  = new LivrosDAO();
+			$result = $DAO->Atualizar($livro);
+
+			if($result == 1)
+			{
+			  echo"<div class=\"alert alert-success\" role=\"alert\">
+			  Livro editado com sucesso!
+			  </div>";
+			}
+			else if($result == -1) {
+			  echo"<div class=\"alert alert-danger\" role=\"alert\">
+			  Não foi possivel editar o livro!
+			  </div>";
+			}	  
+			else {
+			  $mensagens[] = "ERRO NO BANCO DE DADOS: $DAO->erro";
+			  $msg = serialize($mensagens);
+			  header("Location: ../View/cadastrarLivros.php?msg=$msg");
+			}
+
+		unset($livros);
+		}
 	}
 
 	public function controlaExclusao($cod) {
@@ -95,11 +141,10 @@ class LivrosController {
 			}else {
 				echo "<p class=\"erro fa-blink\">NÃO FOI POSSÍVEL EXCLUIR O LIVRO, TENTE NOVAMENTE!</p>";
 			}
-		  } else {
-			echo "<p class=\"erro fa-blink\">ESTE LIVRO NÃO EXISTE!</p>";
-		  }	
+		}
 	}
-}
 
+}
 echo "<script type=\"text/javascript\" src=\"../Include/js/javascript.js\"></script>";
+
 ?>

@@ -1,74 +1,89 @@
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página de Login</title>
+<?php require '__header.phtml'; ?>
 
-<!-- Estilos -->
+    <?php
+        include_once("../Controller/LoginController.php");
+        $obj = new LoginController();
+        $obj->controlaConsulta();
+    ?>
 
-<link
-      rel="stylesheet"
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-      crossorigin="anonymous"
-    />
+<?php require '__header.phtml'; ?>
 
-    <link 
-    rel="stylesheet" 
-    href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" 
-    integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" 
-    crossorigin="anonymous"
-    />
+<style>
+  body,
+  .signin {
+    height: 100vh;
+  }
 
-    <link rel="stylesheet" href="../Include/css/estilo.css">
+  .signin {
+    display: flex;
+    align-items: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+    background-color: #f5f5f5;
+  }
 
-</head>
-<body class="fotologin scroll">
-    <main>
-        <div class="_containerLogin">
-            <img class="imglogin" src="../Include/imagens/avatarLogin.png"> 
-            <!--<h3>Login Estoque</h3>-->    
-            <form method="POST" action="login.php">
-                <div class="form-group">
-                    <i class="fas fa-user"></i>
-                    <input type="text" class="form-control font" id="user" name="user" title="Usuário padrão da biblioteca" size="50" minlength="1" placeholder="Usuário" required>
-                </div>
-        
-                <div class="form-group">
-                    <i class="fas fa-lock"></i>
-                    <input type="password" class="form-control font" id="senha" name="senha" title="Senha padrão da biblioteca" size="50" minlength="1" placeholder="Password" required>
-                </div>
-                <div class="form-group">
-                    <input class="form-control login" type="submit" name="login" value="Login">
-                </div>
-            </form>
-            <?php
-                include_once("../Controller/LoginController.php");
-                $obj = new LoginController();
-                $obj->controlaConsulta();
-            ?>
-        </div>
-    </main>
-    
-    <!-- Scripts -->
+  .form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+  }
 
-    <script
-    src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-    integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-    crossorigin="anonymous"
-  ></script>
+  .form-signin .checkbox {
+    font-weight: 400;
+  }
 
-  <script 
-  src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"
-  ></script>
+  .form-signin .form-floating:focus-within {
+    z-index: 2;
+  }
 
-  <script
-    src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.bundle.min.js"
-    integrity="sha384-ho+j7jyWK8fNQe+A12Hb8AhRq26LrZ/JpcUGGOn+Y7RsweNrtN/tE3MoK7ZeZDyx"
-    crossorigin="anonymous"
-  ></script>
-</body>
-</html>
+  .form-signin input[type="email"] {
+    margin-bottom: -1px;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
 
+  .form-signin input[type="password"] {
+    margin-bottom: 10px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+  }
+  .bd-placeholder-img {
+    font-size: 1.125rem;
+    text-anchor: middle;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    user-select: none;
+  }
+
+  @media (min-width: 768px) {
+    .bd-placeholder-img-lg {
+      font-size: 3.5rem;
+    }
+  }
+</style>
+<div class="signin text-center">
+  <main class="form-signin">
+  <form action="login.php" method="POST">
+      <svg width="109" height="150" viewBox="0 0 166 228" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M21.448 216.654C22.3417 215.965 23.2921 215.241 24.3 214.48C33 207.98 34.1 206.48 37.4 196.98C38.6 193.68 40.3 189.88 41.3 188.48C45.5 182.78 45.7 179.78 43.2 163.38C41.2 150.88 40.3 147.18 38.2 144.08C36.7 141.98 35.3 138.68 34.9 136.58C33.9 130.18 33.7 129.98 28.3 128.68C25.4 127.98 22.2 126.58 21.2 125.58C19.1 123.48 14.5 106.18 14.5 100.38C14.5 97.1797 13.8 96.0796 9 91.9796C0.800049 84.9796 0 83.0796 0 69.4796C0.0999756 56.0796 1.59998 50.7796 9 38.9796C16.7 26.6796 28.1 17.1796 46.5 7.97964C54.3 4.07963 58 2.87964 67.5 1.27965C81.3 -1.02036 83.5 -0.720354 104.3 6.37964C131.7 15.7796 156.7 33.6796 163.6 48.9796C165.8 53.8796 166 59.8796 164 68.2796C161.9 77.0796 160.2 79.9796 152.1 88.2796L145 95.6796L144.4 105.88C143.5 119.78 140.9 124.28 132 127.18C129.3 127.98 128.9 128.68 128.4 133.08C128.1 135.78 127.3 139.28 126.6 140.98C125.9 142.58 125.5 147.28 125.6 151.28C125.8 157.48 126.4 159.68 129.3 165.28C133.1 172.58 137.3 177.58 142.1 180.48C143.609 181.453 151.851 183.92 161.78 186.577C148.627 201.983 131.577 213.963 112.157 220.991L112.3 217.38C112.7 207.98 112.6 207.28 110.9 207.68C109.2 207.98 109 209.08 108.9 217.48C108.9 219.285 108.858 220.844 108.78 222.155C108.014 222.406 107.245 222.649 106.473 222.885C106.44 222.257 106.416 221.556 106.4 220.78C106.3 210.38 105.3 206.28 103.2 208.38C102.4 209.18 102.1 212.58 102.2 218.48C102.243 220.621 102.212 222.579 102.132 224.118C101.488 224.287 100.843 224.452 100.195 224.61C99.7571 222.615 99.4529 219.751 99.4 216.58C99.3 214.08 99 210.88 98.5 209.48C97.4 205.58 96.6 208.68 96.3 218.48C96.1905 222.203 96.0211 224.397 95.6931 225.621C94.9731 225.767 94.2508 225.908 93.5261 226.041C93.2201 224.915 93.2163 222.572 93.4 217.98C93.7 209.88 93.6 209.18 92.1 210.38C91.2 211.08 90.5 213.18 90.5 214.98C90.5 219.527 89.7089 224.931 88.876 226.802C88.5547 226.848 88.2331 226.893 87.911 226.936C87.5817 225.875 87.4498 223.36 87.6 220.28C87.8 214.38 87.6 213.08 86.5 213.28C84.1 213.88 83.5 215.58 83.5 221.78C83.5 225.98 83.2 227.58 82.3 227.28C81.5 226.98 80.9 224.38 80.7 220.18C80.5 215.08 80.1 213.48 79 213.48C77.8 213.48 77.5 214.98 77.5 220.48C77.5 227.38 76.3 229.68 75.1 225.28C74.8 223.98 74.5 220.88 74.5 218.28C74.5 212.48 72.6 211.78 72.4 217.48C72.3 219.68 72.1 221.98 72 222.48C71.9 223.08 71.7 224.38 71.6 225.58C71.5 227.08 70.9 227.58 69.3 227.28C67.8 227.08 66.9 225.98 66.2 223.48C65.1 218.98 63.5 217.28 61.5 218.48C60.3 219.28 60.3 219.88 61.8 222.98C62.7 224.98 63.5 226.78 63.5 226.98C63.5 227.094 61.7741 227.194 58.8305 227.273C45.5844 225.802 32.9999 222.139 21.448 216.654ZM115.6 212.8C115.9 209.9 116.9 206.8 117.6 206C118.8 204.8 119 205.1 119 208.3C119 211.7 116.7 218 115.4 218C115.2 218 115.2 215.6 115.6 212.8ZM44.9999 202.9C46.2999 208 50.2999 212.2 55.1999 213.7C59.5999 215.1 61.6999 215.2 63.9999 214C65.7 213.1 76.5999 195.2 75.7999 194.5C75.5999 194.4 69.2999 192.2 61.7 189.7C52.2999 186.6 47.7999 185.5 47.5999 186.3C47.3999 187 46.4999 190 45.4999 193C43.9999 197.6 43.9999 199.2 44.9999 202.9ZM74.7001 209.9C73.2001 209.3 72.0001 208.5 72.2001 208.1C74.8 202.5 80.8 193 81.8 193C83.1001 193 96.0001 204 96.0001 205.1C96.0001 205.4 93.9001 206.6 91.3 207.9C85.9001 210.5 78.6001 211.4 74.7001 209.9ZM86.0001 205C87.4001 202.4 86.5001 201 83.5001 201C80.8 201 79.9001 202.7 81.2001 205.3C82.4001 207.6 84.7001 207.5 86.0001 205ZM87 190.8L93.7 197.9C100.3 204.8 100.6 205 105.3 205C107.9 205 111.5 204.3 113.3 203.4C117.3 201.3 124.2 196.1 125.5 194C127.1 191.6 129 183.9 129 179.7C129 175.5 127.2 167 126 165.7C125.3 164.9 114.8 171.5 94.2 185.7L87 190.8ZM63.4999 186C57.7 184.3 52.7999 182.2 51.8999 181.2C50.4999 179.4 45.2999 154.4 46.1999 153.5C46.3999 153.2 48.7999 154.9 51.5999 157.2C61.8999 165.8 74.4999 169.3 86.9999 167.1C95.4999 165.6 112.2 157.6 118 152.4C120.1 150.5 122 149 122.4 149C122.7 149 123 151.7 123 155M63.4999 186L63.8522 186.102ZM63.8522 186.102L64.7941 186.374ZM64.7941 186.374L64.7994 186.376ZM64.7994 186.376C70.431 188.007 73.783 188.977 77.0396 188.724ZM77.0396 188.724C81.8289 188.35 86.412 185.329 97.7351 177.865ZM97.7544 177.853L99.2 176.9ZM99.2 176.9C101.776 175.206 104.075 173.7 106.128 172.357ZM106.128 172.357L106.153 172.34ZM106.153 172.34C119.314 163.725 122.313 161.762 122.922 159.225ZM122.922 159.225C123.101 158.476 123.073 157.678 123.036 156.643ZM40.1 134.6C43.3 138 55.3 143 62.2001 143.9C74.5001 145.5 102.2 144.5 111.9 142.1L111.901 142.1L111.902 142.1C113.902 141.6 116.701 140.9 118.2 140.6C123.2 139.5 124.8 135 126.6 117.1C128.6 97.4 127.8 87.3 123.8 83.3C121.1 80.7 112.1 78.1 103.1 77.4C96.9001 76.9 91.3 74 86.1001 68.6C84.2001 66.6 81.8 65 80.8 65C79.8 65 77.9001 66.7 76.6001 68.9C73.5001 73.7 68.8 76.7 62.2001 78C57.7001 78.8 51.3 82.2 32.1 93.8C30.0001 95 37.2001 131.5 40.1 134.6ZM81.3 121C95.5001 120.2 98.5001 122 89.6001 126.1C83.7001 128.8 75.8 128.4 70.5001 125.3C66.7001 123 70.4001 121.5 81.3 121ZM97.5001 117.6C95.1001 116.6 90.7001 116 85.1001 116C79.8 116 73.9001 116.7 69.8 117.8C62.7001 119.8 59.6 119.3 61.9001 116.6C66.9001 110.6 97.2001 109.8 102.1 115.6C104.3 118.2 101.7 119.3 97.5001 117.6ZM88.6001 97C86.6001 96.4 84.5001 96.2 83.8 96.7C82.5001 97.5 71.2001 97.8 69.0001 97.2C67.3 96.6 67.9001 93.4 70.1001 91.5C71.8 89.9 73.5001 89.6 80.3 89.9C89.1001 90.2 91.4001 90.9 93.1001 94.1C94.8 97.3 92.9001 98.5 88.6001 97ZM24.9 123.1L22.5 121.2L25.3 118.2C27.2 116.2 28 114.6 27.6 113.3C26.9 111 28.5 104.9 29.3 107C29.8 108.3 33 123.6 33 124.6C33 125.9 26.8 124.7 24.9 123.1ZM132.1 105C131.4 105 130 115.1 130 120.8C130 123.5 132.7 123.7 137 121.5C140.7 119.6 141.9 116.1 139.4 114.3C138.4 113.6 137 113 136.3 113C135.6 113 134.6 111.2 134 109C133.4 106.8 132.6 105 132.1 105ZM139 101.5C136.8 99.1 136.8 99 138.6 99C140.9 99 143 100.8 143 102.7C143 104.7 141.6 104.3 139 101.5ZM41.7 40C36.2 42.6 21 55.5 21 57.6C21 60.1 23.5 59.1 27.5 54.9C35.6 46.4 47.2 40.6 60.9 38C63.9 37.5 73.3 36.8 81.9 36.5C97 36 97.8 36 108.2 38.9C119.6 42.2 128.4 45.7 133 49C135.9 51.1 139 51.7 139 50.1C139 47 130.2 42.3 114 36.7C103.1 32.9 101.9 32.7 90 32.6C68 32.4 52.9 34.7 41.7 40ZM24 39.6C24 38.9 25.7 37 27.8 35.4C29.8 33.9 36.9 27.4 43.6 21C51.1 13.8 57.4 8.5 60.5 7.1C66.5 4.3 74.5 3.39999 78.5 5.1L81.5 6.3L77 7.1C64 9.39999 53.8 14.5 53.2 18.9C52.8 21.2 53 21.2 57.7 20.7C58.3677 20.5973 59.1081 20.4879 59.8701 20.3754L59.8712 20.3753L59.873 20.375C62.0773 20.0495 64.4629 19.6971 65.8 19.4C68.2 18.9 69 19.1 69 20.3C69 22.6 66.8 23.9 62 24.5L61.7049 24.539C52.5183 25.7539 50.5413 26.0153 50.1163 25.3233C49.9997 25.1336 49.9998 24.8722 50 24.539V24.5C50 21.9 48.3 22.8 41.9 29.2C38.5 32.6 34.1 36.7 32.2 38.2C28.5 41.2 24 41.9 24 39.6ZM84.8 28.6C94.6 28.7 99.8 29.3 107.5 31.3C113 32.6 117.9 33.8 118.3 33.9C119.5 34.1 99.6 14.4 92.8 8.6C83.8 1.00001 82.2 3.3 87.6 15.9C88.9 18.8 90 21.4 90 21.6C90 21.8 87.4 22 84.2 22C78.3 22 74.9 23.5 73.1 26.8C72.3 28.4 73.3 28.5 84.8 28.6ZM119 23.2C107 14.6 102.5 10 106 10C107.4 10 127.8 24 132.7 28.3C135.8 31.1 136.3 33 133.7 33C133 32.9 126.4 28.5 119 23.2Z" fill="#0D6EFD"/>
+      </svg>
+
+      <h1 class="h3 mb-3 mt-3 fw-normal">Faça login no sistema</h1>
+
+      <div class="form-floating">
+        <input type="text" class="form-control font" minlength="3" maxlength="30" id="usuario" name="usuario" title="Usuário padrão da biblioteca" placeholder="Usuário" required>
+        <label for="floatingInput">Usuário</label>
+      </div>
+      <div class="form-floating">
+      <input type="password" class="form-control font" minlength="3" maxlength="30" id="senha" name="senha" title="Senha padrão da biblioteca" placeholder="Password" required>
+        <label for="floatingPassword">Senha</label>
+      </div>
+
+      <button class="w-100 btn btn-lg btn-primary" type="submit">Entrar</button>
+      <p class="mt-5 mb-3 text-muted">&copy; Acadêmicos da UPF</p>
+    </form>
+  </main>
+</div>
+
+<?php require '__footer.phtml'; ?>

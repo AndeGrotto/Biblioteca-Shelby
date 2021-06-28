@@ -39,10 +39,6 @@ class LivrosDAO {
     }
   }
 
-
-
-
-
   public function Consultar($op, $param, $value) {
     try {
 	  $items = array();
@@ -85,6 +81,57 @@ class LivrosDAO {
 	// Em caso de erro, retorna a mensagem:
 	catch(PDOException $e) {
       echo "Erro: ".$e->getMessage();
+    }
+  }
+
+  /*public function Alterar($livros) {
+    try {
+      $stmt = $this->l->prepare("UPDATE livros SET isbn=?, nome=?, autor=? WHERE isbn=?");
+      // Inicia a transação
+      $this->l->beginTransaction();
+      // Vincula um valor a um parâmetro da sentença SQL, na ordem
+      $stmt->bindValue(1, $livros->isbn);
+      $stmt->bindValue(2, $livros->nome);
+      $stmt->bindValue(3, $livros->autor);
+      $stmt->bindValue(4, $livros->isbn);
+    
+      // Executa a query
+      $stmt->execute();
+    
+      // Grava a transação
+      $this->l->commit();
+    
+      // Fecha a conexão DAO
+      $this->l = null;
+
+      return true;
+    }
+    // Em caso de erro, retorna a mensagem:
+    catch(PDOException $e) {
+      $this->erro = "Erro: " . $e->getMessage();
+    return false;
+    }
+  }*/
+
+  public function Atualizar($livros){
+    try {
+      $stmt = $this->l->prepare("UPDATE livros SET nome = ?, isbn = ?, autor = ? WHERE isbn = ?");
+  
+      $this->l->beginTransaction();
+      $stmt->bindValue(1, $livros->nome);
+      $stmt->bindValue(2, $livros->isbn);
+      $stmt->bindValue(3, $livros->autor);
+      $stmt->bindValue(4, $livros->isbn);
+  
+      $stmt->execute();
+  
+      $this->l->commit(); 
+  
+      unset($this->l);
+      return 1;
+    } catch(PDOException $e) {
+      $this->erro = "Erro: " . $e->getMessage();
+      return 0;
     }
   }
 

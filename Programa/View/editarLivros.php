@@ -1,12 +1,25 @@
-<?php require '__header.phtml'; ?>
+
+
+    <?php require '__header.phtml'; ?>
 <?php require '__menu.phtml'; ?>
 
 <div class="container">
-        <?php
+
+            <?php
+            $isbn ="";
+            $nome ="";
+            $autor ="";
+
+            if (isset($_GET['isbn']) && isset($_GET['nome'])&& isset($_GET['autor'])) {
+                $isbn = $_GET['isbn'];
+                $nome = $_GET['nome'];
+                $autor = $_GET['autor'];
+            }
+
             include_once("../Include/livrosResult.php");
             include_once("../Controller/LivrosController.php");
             $obj = new LivrosController();
-            $obj->controlaInsercao();
+            $obj->controlaAlteracao();
         ?>
     <div class="page-header">
         <h2>Adicionar livro</h2>
@@ -18,17 +31,17 @@
     <form method="POST" action="cadastrarLivros.php">
         <div class="mb-3">
             <label for="input-isbn" class="form-label">ISBN</label>
-            <input type="text" maxlength="13" class="isbn form-control font" id="isbn" name="isbn" title="Digite o ISBN do livro" required>
+            <input type="text" class="isbn form-control font" id="isbn" name="isbn" value="<?php print $isbn; ?>" disabled>
         </div>
 
         <div class="mb-3">
             <label for="input-nome" class="form-label">Nome</label>
-            <input type="text" maxlength="30" class="form-control font" id="nome" name="nome" title="Digite o nome do produto" required>
+            <input type="text" class="form-control font" id="nome" name="nome" value="<?php print $nome; ?>">
         </div>
 
         <div class="mb-3">
             <label for="input-autor" class="form-label">Autor</label>
-            <input type="text" maxlength="30" class="form-control font" id="autor" name="autor" title="Digite o nome do autor" required>
+            <input type="text" class="form-control font" id="autor" name="autor" value="<?php print $autor; ?>">
         </div>
 
         <button type="submit" class="btn btn-primary">Cadastrar livro</button>

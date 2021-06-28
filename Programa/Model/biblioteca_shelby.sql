@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 22-Jun-2021 às 02:37
+-- Tempo de geração: 28-Jun-2021 às 23:09
 -- Versão do servidor: 10.4.17-MariaDB
 -- versão do PHP: 8.0.2
 
@@ -34,14 +34,6 @@ CREATE TABLE `alunos` (
   `telefone` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Extraindo dados da tabela `alunos`
---
-
-INSERT INTO `alunos` (`id`, `nome`, `matricula`, `telefone`) VALUES
-(8, 'Carlos', '1', '(54) 99602-8366'),
-(9, 'Arlindo', '2', '(54) 96602-8355');
-
 -- --------------------------------------------------------
 
 --
@@ -54,15 +46,6 @@ CREATE TABLE `livros` (
   `nome` varchar(50) NOT NULL,
   `autor` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Extraindo dados da tabela `livros`
---
-
-INSERT INTO `livros` (`id`, `isbn`, `nome`, `autor`) VALUES
-(4, '121–21–212–1221–2', 'Arlindo', 'Erminia'),
-(5, '132–13–123–12', 'Arlindo', 'Erminia'),
-(6, '154–87–8', 'PF', 'Cabeça');
 
 -- --------------------------------------------------------
 
@@ -113,13 +96,13 @@ ALTER TABLE `login`
 -- AUTO_INCREMENT de tabela `alunos`
 --
 ALTER TABLE `alunos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT de tabela `livros`
 --
 ALTER TABLE `livros`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=647924;
 
 --
 -- AUTO_INCREMENT de tabela `login`

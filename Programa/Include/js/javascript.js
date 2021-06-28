@@ -5,7 +5,8 @@ $(document).ready(function(){
     $('.telefone').mask('(00) 00000-0000');
     $('.cpf').mask('000.000.000-00');
     $('.dinheiro').mask('000.000.000.000,00');
-    $('.isbn').mask('0000000000000');
+    $('.isbn').mask('#');
+    $('.matricula').mask('#');
 });
 
 function goBack() {
@@ -20,3 +21,7 @@ function ConfirmarDelete()
   else
     return false;
 }
+
+function load() {
+    console.log("Evento de carregamento detectado!");
+  }

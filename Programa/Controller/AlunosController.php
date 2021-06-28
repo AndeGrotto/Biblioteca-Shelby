@@ -32,8 +32,8 @@ class AlunosController {
 			if($telefone)
 			  echo "<td>$telefone</td>";
 
-			  echo "<th class=\"acoes\"><a href=\"../View/cadastrarLivros.php\" class=\"btn btn-success\" role=\"button\" aria-pressed=\"true\"><i class=\"icone fas fa-plus-square\"></i>Inserir</a>";
-			  echo "<a href=\"../View/excluirAlunos.php?matricula=$matricula\" class=\"btn btn-danger\" role=\"button\" aria-pressed=\"true\"  onclick=\"return ConfirmarDelete();\"><i class=\"icone fas fa-trash-alt\"></i>Excluir</a></th>";
+			  echo "<th class='acoes'><div class='align-bt'><a href='../View/cadastrarLivros.php' class='btn btn-success' role='button' aria-pressed='true'><i class='fas fa-edit'></i></a>
+			  <a href='../View/excluirAlunos.php?matricula=$matricula' class='btn btn-danger' role='button' aria-pressed='true'  onclick='return ConfirmarDelete();'><i class=' fas fa-trash-alt'></i></a></div></th>";
 
 			echo "</tr>";
 		  }
@@ -45,28 +45,37 @@ class AlunosController {
 		}
 	  }
 
+	  private function preparaDados()
+	  {
+		$alunos = new Alunos();
+		
+		$nome = trim($_POST["nome"]);
+        $matricula = trim($_POST["matricula"]);
+		$telefone = trim($_POST["telefone"]);
 
-	public function controlaInsercao() {
-		if (isset($_POST['cadastrarAluno'])) {
-			if (strlen($_POST['nome']) >= 1 && strlen($_POST['matricula']) >= 1 && strlen($_POST['telefone']) >= 1) {
-				$mensagens = array();
-				$nome = trim($_POST["nome"]);
-				$matricula = trim($_POST["matricula"]);
-				$telefone = trim($_POST["telefone"]);
-				
-		  		$alunos = new Alunos();
-		  		$alunos->nome = $nome;
-				$alunos->matricula = $matricula;
-		  		$alunos->telefone = $telefone;
+		$alunos->nome = $nome;
+		$alunos->matricula = $matricula;
+		$alunos->telefone = $telefone;
+		
+		return $alunos;    
+	  }
+
+	  public function controlaInsercao() {
+		if (isset($_POST['nome']) >= 1 && isset($_POST['matricula']) >= 1 && isset($_POST['telefone']) >= 1) {
 
 				$DAO  = new AlunosDAO();
-				$resultado = $DAO->Inserir($alunos);
-
-				if($resultado == 1) {
-					echo "<p class=\"sucesso fa-blink\">ALUNO INSERIDO COM SUCESSO!</p>";
+				$alunos = $this->preparaDados();
+				$result = $DAO->Inserir($alunos);
+				  if($result == 1)
+				  {
+					echo"<div class=\"alert alert-success\" role=\"alert\">
+            		Aluno inserido com sucesso!
+        			</div>";
 				  }
-				  else if($resultado == -1) {
-					echo "<p class=\"erro fa-blink\">ALUNO JÁ EXISTE, TENTE NOVAMENTE!</p>";
+				  else if($result == -1) {
+					echo"<div class=\"alert alert-danger\" role=\"alert\">
+            		Aluno já existe, tente novamente outro!
+        			</div>";
 				  }	  
 				  else {
 					$mensagens[] = "ERRO NO BANCO DE DADOS: $DAO->erro";
@@ -76,7 +85,6 @@ class AlunosController {
 				  
 				  unset($alunos);
 			}
-	    }
 	}
 
 	public function controlaExclusao($cod) {
@@ -88,13 +96,13 @@ class AlunosController {
 			$DAO  = new AlunosDAO();
 			$validar = $DAO->Excluir($cod);
 			if($validar) {
-				echo "<p class=\"sucesso fa-blink\">ALUNOS DELETADO COM SUCESSO!</p>";
+				
 				header("location: ../View/mostrarAlunos.php");
 			}else {
-				echo "<p class=\"erro fa-blink\">NÃO FOI POSSÍVEL EXCLUIR O ALUNO, TENTE NOVAMENTE!</p>";
+			
 			}
 		  } else {
-			echo "<p class=\"erro fa-blink\">ESTE LIVRO NÃO EXISTE!</p>";
+		
 		  }	
 	}
 }
