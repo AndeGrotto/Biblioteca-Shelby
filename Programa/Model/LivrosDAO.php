@@ -49,8 +49,12 @@ class LivrosDAO {
           $query = "SELECT * FROM livros";
           break;
         case 2:
-          $query = "SELECT * FROM livros WHERE $param=$value";
-          break;      
+          $query = "SELECT l.*
+          FROM livros l 
+          LEFT JOIN emprestimo e 
+          ON l.isbn = e.isbn
+          WHERE e.isbn IS NULL;";
+          break; 
       }    
 	  
       if($query != null)
