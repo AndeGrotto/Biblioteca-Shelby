@@ -30,6 +30,10 @@
   </head>
 
   <body>
+    <?php
+    include("../Include/SessaoValidate.php");  // Faz a autenticação
+    ?>
+
     <header id="cabecalho-principal">
       <nav class="navbar navbar-expand-lg navbar-dark bg-transparent">
         <button
@@ -55,9 +59,7 @@
           </a>
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="nav navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="menu.php">Menu</a>
-              </li>
+            
               <li class="nav-item">
                 <a class="nav-link" href="mostrarLivros.php">Livro</a>
               </li>
@@ -68,7 +70,10 @@
                 <a class="nav-link" href="mostrarEmprestimo.php">Empréstimo</a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="login.php">Sair</a>
+                <a class="nav-link" href="menu.php">Menu</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="logout.php">Sair</a>
               </li>
             </ul>
           </div>

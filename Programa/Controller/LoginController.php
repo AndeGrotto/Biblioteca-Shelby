@@ -1,5 +1,4 @@
 <?php 
-
 require_once("../Model/Conect_BD.php");
 require_once("../Model/Login.php");
 require_once("../Model/LoginDAO.php");
@@ -26,7 +25,7 @@ class LoginController {
 				session_start();
 				$_SESSION["nome_usuario"] = $login->usuario;
 				$_SESSION["senha_usuario"] = $login->senha;
-				header("location: ../View/paginaInicial.html");  /* Direciona para a página inicial */
+				header("location: ../View/paginaInicial.php");  /* Direciona para a página inicial */
 			  }
 		  }
 		}

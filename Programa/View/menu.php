@@ -1,3 +1,4 @@
+<?php require '__header.phtml'; ?>
 
 <head>
 	<link rel="stylesheet" href="../Include/css/menu.css">
@@ -12,7 +13,7 @@
   	<label for="menu-icon"></label>
   	<nav class="nav"> 		
   		<ul class="pt-5">
-  			<li><a href="paginaInicial.html">Home</a></li>
+  			<li><a href="paginaInicial.php">Home</a></li>
 			<li><a href="mostrarAlunos.php">Mostrar alunos</a></li>
   			<li><a href="mostrarEmprestimo.php">Mostrar empréstimos</a></li>
         	<li><a href="mostrarLivros.php">Mostrar livros</a></li>
@@ -24,3 +25,5 @@
   	<div class="section-center">
   		<h1 class="mb-0">Menu da Biblioteca</h1>
   	</div>
+
+<?php require '__footer.phtml'; ?>
