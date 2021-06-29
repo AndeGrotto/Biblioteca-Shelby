@@ -1,37 +1,37 @@
 <?php
 class EmprestimoDAO {
 
-  public $l = null;
+  public $e = null;
   public $erro = null;
   
 
   public function __construct() {
-    $this->l = new Conect_BD();
-	$this->l->exec("set names utf8"); 
+    $this->e = new Conect_BD();
+	$this->e->exec("set names utf8"); 
   }
   
 
   public function Inserir($emprestimo){
     try {
-      $stmt = $this->l->query("SELECT * FROM emprestimo WHERE codEmprestimo = '$emprestimo->codEmprestimo'");
+      $stmt = $this->e->query("SELECT * FROM emprestimo WHERE isbn = '$emprestimo->isbn'");
       if($stmt->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT))
 	    return -1;
 
-      $stmt = $this->l->prepare("INSERT INTO emprestimo(codEmprestimo, dataEmprestimo,dataDevolucao,
-                                                         codISBN, codAluno) VALUES (?, ?, ?, ?, ?, ?)");
+      $stmt = $this->e->prepare("INSERT INTO emprestimo(dataEmprestimo,dataDevolucao,
+                                                         isbn, matricula) VALUES (?, ?, ?, ?)");
 
-    $this->l->beginTransaction();
-    $stmt->bindValue(1, $emprestimo->codEmprestimo);
+    $this->e->beginTransaction();
     $stmt->bindValue(1, $emprestimo->dataEmprestimo);
     $stmt->bindValue(2, $emprestimo->dataDevolucao);
-    $stmt->bindValue(1, $emprestimo->codISBN);
-    $stmt->bindValue(1, $emprestimo->codAluno);
+    $stmt->bindValue(3, $emprestimo->isbn);
+    $stmt->bindValue(4, $emprestimo->matricula);
+
 
       $stmt->execute();
 
-      $this->l->commit(); 
+      $this->e->commit(); 
 
-      unset($this->l);
+      unset($this->e);
       
       return 1;
     }
@@ -43,44 +43,67 @@ class EmprestimoDAO {
   }
 
 
-  public function Consultar($query=null) {
+  public function Consultar($op, $param, $value) {
     try {
 	  $items = array();
 	  
+    switch($op)
+    {
+      case 1:
+        $query = "SELECT * FROM emprestimo";
+        break; 
+    }    
+
       if($query != null)
-        $stmt = $this->l->query($query);
+        $stmt = $this->e->query($query);
       else
-        $stmt = $this->l->query("SELECT * FROM emprestimo");
+        $stmt = $this->e->query("SELECT * FROM emprestimo");
 		
-	  $this->l = null;
+	  $this->e = null;
 	  
 	  while($registro = $stmt->fetch(PDO::FETCH_ASSOC, PDO::FETCH_ORI_NEXT))
 	  {
-	    $l = new emprestimo();
+	    $e = new Emprestimo();
 		
-		// Sempre verifica se a query SQL retornou a respectiva coluna
-		if(isset($registro["codEmprestimo"]))
-		  $l->codEmprestimo = $registro["codEmprestimo"];
-		if(isset($registro["dataEmprestimo"]))
-		  $l->dataEmprestimo = $registro["dataEmprestimo"];
+    if(isset($registro["dataEmprestimo"]))
+		  $e->dataEmprestimo = $registro["dataEmprestimo"];
 		if(isset($registro["dataDevolucao"]))
-		  $l->dataDevolucao = $registro["dataDevolucao"];
-    if(isset($registro["codISBN"]))
-		  $l->codISBN = $registro["codISBN"];
-    if(isset($registro["codAluno"]))
-		  $l->codAluno = $registro["codAluno"];
+		  $e->dataDevolucao = $registro["dataDevolucao"];
+		if(isset($registro["isbn"]))
+		  $e->isbn = $registro["isbn"];
+		if(isset($registro["matricula"]))
+		  $e->matricula = $registro["matricula"];
 
-
-
-		// Ao final, adiciona o registro como um item do array de retorno
-	    $items[] = $l;
+	    $items[] = $e;
 	  }
 	  
       return $items;
     }
-	// Em caso de erro, retorna a mensagem:
+
 	catch(PDOException $e) {
       echo "Erro: ".$e->getMessage();
+    }
+  }
+
+  public function Excluir($cod) {
+    try {
+      $stmt = $this->e->prepare("DELETE FROM emprestimo WHERE isbn=?");
+
+      $this->e->beginTransaction();
+
+      $stmt->bindValue(1, $cod);
+    
+
+      $stmt->execute();
+      $this->e->commit();
+      $this->e = null;
+
+      return true;
+    }
+
+    catch(PDOException $e) {
+      $this->erro = "Erro: " . $e->getMessage();
+      return false;
     }
   }
  

@@ -1,11 +1,11 @@
 <?php
 
-class emprestimo {
-    private $codEmprestimo;
+class Emprestimo {
+    private $codId;
     private $dataEmprestimo;
     private $dataDevolucao;
-    private $codAluno;
-    private $codISBN;
+    private $isbn;
+    private $matricula;
 
     public function __construct() {}
 

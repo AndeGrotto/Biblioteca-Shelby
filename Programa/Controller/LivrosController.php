@@ -6,14 +6,33 @@ require_once("../Model/LivrosDAO.php");
 
 class LivrosController {
 
+	private function preparaDados()
+	  {
+		$livros = new Livros();
+		
+		$isbn = trim($_POST["isbn"]);
+        $nome = trim($_POST["nome"]);
+		$autor = trim($_POST["autor"]);
+
+		$livros->isbn = $isbn;
+		$livros->nome = $nome;
+		$livros->autor = $autor;
+		
+		return $livros;    
+	  }
+
 	public function controlaConsulta($op) {
 		$DAO = new LivrosDAO();
 		$lista = array();
+		$listaLivros = array();
 		$numCol = 3;
 
 		switch($op) {
 		  case 1:
 			$lista = $DAO->Consultar($op, "", "");
+			break;
+		case 2:
+			$listaLivros = $DAO->Consultar($op, "", "");
 			break;
 		}
 	
@@ -37,7 +56,28 @@ class LivrosController {
 		  
 			  echo "</tr>";
 			}
-		}
+		}else if(count($listaLivros) > 0) {
+			for($i = 0; $i < count($listaLivros); $i++) {
+			  $isbn = $listaLivros[$i]->isbn;
+			  $nome = $listaLivros[$i]->nome;
+			  $autor = $listaLivros[$i]->autor;
+			  
+			  
+  
+			  echo "<tr>";
+			  
+			  echo "<td> <INPUT TYPE=\"RADIO\" NAME=\"isbn\" value=\"{$isbn}\"></td>";
+			  if($isbn)
+				echo "<td>$isbn</td>";
+			  if($nome)
+				echo "<td>$nome</td>";
+			  if($autor)
+				echo "<td>$autor</td>";
+				
+			
+				echo "</tr>";
+			  }
+		  }
 		else {
 		  echo "<tr>";
 		  echo "<td colspan=\"$numCol\">Nenhum registro encontrado!</td>";
@@ -45,20 +85,6 @@ class LivrosController {
 		}
 	  }
 
-	  private function preparaDados()
-	  {
-		$livros = new Livros();
-		
-		$isbn = trim($_POST["isbn"]);
-        $nome = trim($_POST["nome"]);
-		$autor = trim($_POST["autor"]);
-
-		$livros->isbn = $isbn;
-		$livros->nome = $nome;
-		$livros->autor = $autor;
-		
-		return $livros;    
-	  }
 
     public function controlaInsercao() {
 		if (isset($_POST['isbn']) >= 1 && isset($_POST['nome']) >= 1 && isset($_POST['autor']) >= 1) {
@@ -99,12 +125,13 @@ class LivrosController {
 			$DAO  = new LivrosDAO();
 			$validar = $DAO->Excluir($cod);
 			if($validar) {
-				echo "<p class=\"sucesso fa-blink\">LIVROS DELETADO COM SUCESSO!</p>";
 				header("location: ../View/mostrarLivros.php");
 			}else {
 				echo "<p class=\"erro fa-blink\">NÃO FOI POSSÍVEL EXCLUIR O LIVRO, TENTE NOVAMENTE!</p>";
 			}
-		}
+		} else {
+			echo "<p class=\"erro fa-blink\">NÃO FOI POSSÍVEL EXCLUIR O LIVRO, TENTE NOVAMENTE!</p>";
+		  }	
 		unset($resultado);
 	}
 

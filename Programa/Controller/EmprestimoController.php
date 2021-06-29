@@ -10,52 +10,57 @@ require_once("../Model/Emprestimo.php");
 
 class EmprestimoController {
 
-	public function controlaConsultaLivros($op) {
-		$DAO = new LivrosDAO();
-		$lista = array();
-		$numCol = 3;
+	  private function preparaDados()
+	  {
+		$emprestimo = new Emprestimo();
 		
-		switch($op) {
-		  case 1:
-			$lista = $DAO->Consultar($op, "","");
-			break;
-		}
-	
-		if(count($lista) > 0) {
-		  for($i = 0; $i < count($lista); $i++) {
-			
-			$isbn = $lista[$i]->isbn;
-			$nome  = $lista[$i]->nome;
-			$autor = $lista[$i]->autor;
-			
-			echo "<tr>";
-	
-			if($isbn)
-            echo "<td> <INPUT TYPE=\"RADIO\" NAME=\"radioISBN\" value=\"{$isbn}\"></td>";
-			if($nome)
-			  echo "<td>$nome</td>";
-			if($autor)
-			  echo "<td>$autor</td>";
-			
-	
-	
-			//echo "<input class=\"btn btn-danger\" role=\"button\" aria-pressed=\"true\"><i class=\"fas fa-trash-alt\"></i></input></th>";
+		$dataEmprestimo = trim($_POST["dataEmprestimo"]);
+        $dataDevolucao = trim($_POST["dataDevolucao"]);
+		$isbn = trim($_POST["isbn"]);
+		$matricula = trim($_POST["matricula"]);
 
-			echo "</tr>";
-		  }
-		}
-		else {
-		  echo "<tr>";
-		  echo "<td colspan=\"$numCol\">Nenhum registro encontrado!</td>";
-		  echo "</tr>";
-		}
-	  }
-      
-      public function controlaConsultaAlunos($op) {
-		$DAO = new AlunosDAO();
-		$lista = array();
-		$numCol = 3;
+		$emprestimo->dataEmprestimo = $dataEmprestimo;
+		$emprestimo->dataDevolucao = $dataDevolucao;
+		$emprestimo->isbn = $isbn;
+		$emprestimo->matricula = $matricula;
 		
+		return $emprestimo;    
+	  }
+
+
+	  public function controlaInsercao() {
+		if (isset($_POST['dataEmprestimo']) >= 1 && isset($_POST['dataDevolucao']) >= 1 && isset($_POST['isbn']) >= 1 && isset($_POST['matricula']) >= 1) {
+
+				$DAO  = new EmprestimoDAO();
+
+				$emprestimo = $this->preparaDados();
+				$result = $DAO->Inserir($emprestimo);
+				  if($result == 1)
+				  {
+					echo"<div class=\"alert alert-success\" role=\"alert\">
+            		Livro inserido com sucesso!
+        			</div>";
+				  }
+				  else if($result == -1) {
+					echo"<div class=\"alert alert-success\" role=\"alert\">
+            		Livro inserido com sucesso!
+        			</div>";
+				  }	  
+				  else {
+					$mensagens[] = "ERRO NO BANCO DE DADOS: $DAO->erro";
+					$msg = serialize($mensagens);
+					header("Location: ../View/cadastrarLivros.php?msg=$msg");
+				  }
+				  
+				  unset($livros);
+			}
+	}
+
+	public function controlaConsulta($op) {
+		$DAO = new EmprestimoDAO();
+		$lista = array();
+		$numCol = 4;
+
 		switch($op) {
 		  case 1:
 			$lista = $DAO->Consultar($op, "", "");
@@ -64,26 +69,27 @@ class EmprestimoController {
 	
 		if(count($lista) > 0) {
 		  for($i = 0; $i < count($lista); $i++) {
-			$id = $lista[$i]->id;
-			$nome = $lista[$i]->nome;
+			$dataEmprestimo = $lista[$i]->dataEmprestimo;
+			$dataDevolucao = $lista[$i]->dataDevolucao;
+			$isbn = $lista[$i]->isbn;
 			$matricula = $lista[$i]->matricula;
-			$telefone = $lista[$i]->telefone;
-
 			
 			echo "<tr>";
 			
-			if($id)
-				echo "<td> <INPUT TYPE=\"RADIO\" NAME=\"radioID\" value=\"{$id}\"></td>";
-			if($nome)
-             echo "<td style=\"text-align: left;\">$nome</td>";
-			if($telefone)
-			 echo "<td style=\"text-align: left;\">$telefone</td>";
-	
-	
-			//echo "<input class=\"btn btn-danger\" role=\"button\" aria-pressed=\"true\"><i class=\"fas fa-trash-alt\"></i></input></th>";
-
-			echo "</tr>";
-		  }
+			if($dataEmprestimo)
+			  echo "<td>$dataEmprestimo</td>";
+			if($dataDevolucao)
+			  echo "<td>$dataDevolucao</td>";
+			if($isbn)
+			  echo "<td>$isbn</td>";
+			if($matricula)
+			  echo "<td>$matricula</td>";
+			  
+			  echo "<th class='acoes'><div class='align-bt'>
+			  <a href='../View/excluirEmprestimo.php?isbn=$isbn' class='btn btn-danger' role='button' aria-pressed='true'  onclick='return ConfirmarDelete();'><i class=' fas fa-trash-alt'></i></a></div></th>";
+		  
+			  echo "</tr>";
+			}
 		}
 		else {
 		  echo "<tr>";
@@ -92,65 +98,24 @@ class EmprestimoController {
 		}
 	  }
 
+	  public function controlaExclusao($cod) {
+		$DAO  = new EmprestimoDAO();
+		$resultado = array();
 
-
-
-
-    public function controlaInsercaoEmprestimo() {
-		$codAluno = $_POST['radioID'];
-		$codISBN = $_POST['radioISBN'];
-
-		if(isset($_POST['radioID'])){
-			if(!empty($_POST['radioID'])) {
-				echo '  ' . $_POST['radioID'];
-			} else {
-				echo 'Please select the value.';
+		$resultado = $DAO->Consultar(2, "isbn", $cod);
+		echo $resultado;
+		if($resultado) {
+			$DAO  = new EmprestimoDAO();
+			$validar = $DAO->Excluir($cod);
+			if($validar) {
+				header("location: ../View/mostrarEmprestimo.php");
+			}else {
+				echo "<p class=\"erro fa-blink\">NÃO FOI POSSÍVEL EXCLUIR O EMPRÉSTIMO, TENTE NOVAMENTE!</p>";
 			}
 		}
-			
-		if(isset($_POST['radioISBN'])){
-			if(!empty($_POST['radioISBN'])) {
-				echo '  ' . $_POST['radioISBN'];
-			} else {
-				echo 'Please select the value.';
-			}
-		}
-
-
-			if (strlen($_POST['codEmprestimo']) >= 1 && strlen($_POST['dataEmprestimo']) >= 1 && strlen($_POST['dataDevolucao']) >= 1) {
-
-				$mensagens = array();
-				$codEmprestimo = trim($_POST["codEmprestimo"]);
-                $dataEmprestimo = trim($_POST["dataEmprestimo"]);
-				$dataDevolucao = trim($_POST["dataDevolucao"]);
-				$codAluno = trim($_POST['radioID']);
-				$codISBN =  trim($_POST['radioISBN']);
-		  		$emprestimo = new Emprestimo();
-		  		$emprestimo->codEmprestimo = $codEmprestimo;
-				$emprestimo->dataEmprestimo = $dataEmprestimo;
-		  		$emprestimo->dataDevolucao = $dataDevolucao;
-				$emprestimo->codAluno = $codAluno;
-				$emprestimo->codISBN = $codISBN;
-
-
-				$DAO  = new EmprestimoDAO();
-				$resultado = $DAO->Inserir($emprestimo);
-
-				if($resultado == 1) {
-					echo "<p class=\"sucesso fa-blink\">LIVROS INSERIDO COM SUCESSO!</p>";
-				  }
-				  else if($resultado == -1) {
-					echo "<p class=\"erro fa-blink\">LIVROS JÁ EXISTE, TENTE NOVAMENTE!</p>";
-				  }	  
-				  else {
-					$mensagens[] = "ERRO NO BANCO DE DADOS: $DAO->erro";
-					$msg = serialize($mensagens);
-					header("Location: ../View/cadastrarEmprestimo.php?msg=$msg");
-				  }
-				  
-				  unset($user);
-			}
-	    
 	}
+
+
+    
 }
 ?>

@@ -16,14 +16,15 @@
     </div>
 
     <form method="POST" action="cadastrarAlunos.php">
-        <div class="mb-3">
-            <label for="input-nome" class="form-label">Nome</label>
-            <input type="text" maxlength="30" class="form-control font" id="nome "name="nome" title="Informe seu nome" required>
-        </div>
 
         <div class="mb-3">
             <label for="input-matricula" class="form-label">Matrícula</label>
-            <input type="text" maxlength="20" class="matricula form-control font" id="matricula" name="matricula" title="Informe a matrícula" required>
+            <input type="text" maxlength="15" class="matricula form-control font" id="matricula" name="matricula" title="Informe a matrícula" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="input-nome" class="form-label">Nome</label>
+            <input type="text" maxlength="30" class="form-control font" id="nome "name="nome" title="Informe seu nome" required>
         </div>
 
         <div class="mb-3">

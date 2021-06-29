@@ -11,8 +11,8 @@
                     <table class="table">
                         <thead>
                             <tr>
-                                <th>Nome</th>
                                 <th>Matrícula</th>
+                                <th>Nome</th>
                                 <th>Telefone</th>
                                 <th>Ações</th>
                             </tr>

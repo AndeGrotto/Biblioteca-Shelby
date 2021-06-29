@@ -6,14 +6,33 @@ require_once("../Model/AlunosDAO.php");
 
 class AlunosController {
 
+	private function preparaDados()
+	{
+	  $alunos = new Alunos();
+	  
+	  $nome = trim($_POST["nome"]);
+	  $matricula = trim($_POST["matricula"]);
+	  $telefone = trim($_POST["telefone"]);
+
+	  $alunos->nome = $nome;
+	  $alunos->matricula = $matricula;
+	  $alunos->telefone = $telefone;
+	  
+	  return $alunos;    
+	}
+
 	public function controlaConsulta($op) {
 		$DAO = new AlunosDAO();
 		$lista = array();
+		$listaAlunos = array();
 		$numCol = 3;
 		
 		switch($op) {
 		  case 1:
 			$lista = $DAO->Consultar($op, "", "");
+			break;
+		  case 2:
+			$listaAlunos = $DAO->Consultar(1, "", "");
 			break;
 		}
 	
@@ -24,11 +43,11 @@ class AlunosController {
 			$telefone = $lista[$i]->telefone;
 			
 			echo "<tr>";
-			
+
+			if($matricula)
+			echo "<td>$matricula</td>";
 			if($nome)
 			  echo "<td>$nome</td>";
-			if($matricula)
-			  echo "<td>$matricula</td>";
 			if($telefone)
 			  echo "<td>$telefone</td>";
 
@@ -37,27 +56,33 @@ class AlunosController {
 
 			echo "</tr>";
 		  }
+		}	
+		
+		else if(count($listaAlunos) > 0) {
+		  for($i = 0; $i < count($listaAlunos); $i++) {
+			$matricula = $listaAlunos[$i]->matricula;
+			$nome = $listaAlunos[$i]->nome;
+			$telefone = $listaAlunos[$i]->telefone;
+			
+			echo "<tr>";
+			
+			echo "<td> <INPUT type='RADIO' name='matricula' value='{$matricula}'></td>";
+			if($matricula)
+			  echo "<td>$matricula</td>";
+			if($nome)
+			  echo "<td>$nome</td>";
+			if($telefone)
+			  echo "<td>$telefone</td>";
+			  
+		  
+			  echo "</tr>";
+			}
 		}
 		else {
 		  echo "<tr>";
 		  echo "<td colspan=\"$numCol\">Nenhum registro encontrado!</td>";
 		  echo "</tr>";
 		}
-	  }
-
-	  private function preparaDados()
-	  {
-		$alunos = new Alunos();
-		
-		$nome = trim($_POST["nome"]);
-        $matricula = trim($_POST["matricula"]);
-		$telefone = trim($_POST["telefone"]);
-
-		$alunos->nome = $nome;
-		$alunos->matricula = $matricula;
-		$alunos->telefone = $telefone;
-		
-		return $alunos;    
 	  }
 
 	  public function controlaInsercao() {
@@ -96,13 +121,12 @@ class AlunosController {
 			$DAO  = new AlunosDAO();
 			$validar = $DAO->Excluir($cod);
 			if($validar) {
-				
 				header("location: ../View/mostrarAlunos.php");
 			}else {
-			
+				echo "<p class=\"erro fa-blink\">NÃO FOI POSSÍVEL EXCLUIR O ALUNO, TENTE NOVAMENTE!</p>";
 			}
 		  } else {
-		
+			echo "<p class=\"erro fa-blink\">NÃO FOI POSSÍVEL EXCLUIR O ALUNO, TENTE NOVAMENTE!</p>";
 		  }	
 	}
 }
